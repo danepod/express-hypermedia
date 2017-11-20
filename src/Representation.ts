@@ -9,8 +9,6 @@ export class Representation {
     url: string;
     providers: Provider[] = [];
 
-    // TODO: Implement way of adding Providers to this class
-
     constructor(url: string) {
         this.url = url;
     }
@@ -29,7 +27,6 @@ export class Representation {
         // Create new handler that does content negotiation
         route.get = (req: Request, res: Response, next: NextFunction) => {
             const accepts = req.header('Accept');
-            console.log(accepts);
 
             if(accepts !== undefined && accepts !== '*/*') {
                 if(cnMapping[accepts] !== undefined) {
