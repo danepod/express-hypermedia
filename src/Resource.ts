@@ -13,8 +13,10 @@ export class Resource {
         this.url = url || `/${name}s`
     }
 
-    addRepresentation(representation: Representation) {
-        this.representations.push(representation);
+    addRepresentations(representations: Representation | Representation[]) {
+        const currentRepresentations: Representation[] = Array.isArray(representations) ? representations : [representations];
+
+        this.representations.push(...currentRepresentations);
     }
 
     getRoutes(): RouteMap {

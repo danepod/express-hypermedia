@@ -7,8 +7,10 @@ import { Resource } from "./Resource";
 export class HypermediaRouter {
     resources: Resource[] = [];
 
-    resource(resource: Resource) {
-        this.resources.push(resource);
+    addResources(resources: Resource | Resource[]) {
+        const currentResources = Array.isArray(resources) ? resources : [resources];
+
+        this.resources.push(...currentResources);
     }
 
     getExpressRouter(): Router {

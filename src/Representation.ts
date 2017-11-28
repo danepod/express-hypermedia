@@ -13,6 +13,16 @@ export class Representation {
         this.url = url;
     }
 
+    addKeywords(keywords: string | string[]): void {
+        const currentKeywords: string[] = Array.isArray(keywords) ? keywords : [keywords];
+        this.keywords.push(...currentKeywords);
+    }
+
+    addProviders(providers: Provider | Provider[]): void {
+        const currentProviders: Provider[] = Array.isArray(providers) ? providers : [providers];
+        this.providers.push(...currentProviders);
+    }
+
     getRoute(): Route {
         const route: Route = {};
         const cnMapping: CNMapping = {};
