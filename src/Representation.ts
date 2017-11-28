@@ -19,7 +19,7 @@ export class Representation {
 
         // Collect handlers of each provider
         for (let provider of this.providers) {
-            cnMapping[provider.contentType] = provider.getHandler();
+            cnMapping[provider.contentType] = provider.handler;
         }
 
         // TODO: Move this into a route class, as this behaviour should be deafult for every GET request
@@ -43,7 +43,7 @@ export class Representation {
                 // Just return the first handler
                 // TODO: Implement a setting to set another default handler
 
-                return this.providers[0].getHandler()(req, res, next);
+                return this.providers[0].handler(req, res, next);
             }
         }
 

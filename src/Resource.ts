@@ -1,6 +1,6 @@
 // Dependencies ---------------------------------------------------------------
 import { Representation } from "./Representation";
-import { RouteTree } from "./interfaces";
+import { RouteMap } from "./interfaces";
 
 // Resource Implementation ----------------------------------------------------
 export class Resource {
@@ -13,14 +13,14 @@ export class Resource {
         this.url = url || `/${name}s`
     }
 
-    representation(representation: Representation) {
+    addRepresentation(representation: Representation) {
         this.representations.push(representation);
     }
 
-    getRoutes(): RouteTree {
-        const routes: RouteTree = {};
+    getRoutes(): RouteMap {
+        const routes: RouteMap = {};
         
-        // TODO: For every Representation, get URL with its handlers and merge it into a RouteTree
+        // TODO: For every Representation, get URL with its handlers and merge it into a RouteMap
         for (let representation of this.representations) {
             routes[representation.url] = representation.getRoute();
         }
