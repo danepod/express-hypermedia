@@ -1,15 +1,31 @@
 // Dependencies ---------------------------------------------------------------
-import { Request, Response, NextFunction } from 'express';
-
 import { Provider as BaseProvider } from "../../Provider";
+import  * as Siren from './index';
+import { Options } from '../../index';
 
 // Siren Provider implementation ----------------------------------------------
-export class Provider extends BaseProvider {
-    contentType = 'application/vnd.siren+json';
+export abstract class Provider extends BaseProvider {
+    getClass(options?: Options): string[] | undefined {
+        return undefined;
+    }
 
-    // TODO: If given Entity instance, the provider should generate a simple handler by itself
-    handler = (req: Request, res: Response, next: NextFunction) => {
-        // TODO: Generate Error entity for this message
-        res.send('Not implemented yet');
-    };
+    getTitle(options?: Options): string | undefined {
+        return undefined;
+    }
+
+    getProperties(options?: Options): object | undefined {
+        return undefined;
+    }
+
+    getEntities(options?: Options): (Siren.EmbeddedLink | Siren.EmbeddedRepresentation)[] | undefined {
+        return undefined;
+    }
+    
+    getActions(options?: Options): Siren.Action[] | undefined {
+        return undefined;
+    }
+
+    getLinks(options?: Options): Siren.Link[] | undefined {
+        return undefined;
+    }
 }

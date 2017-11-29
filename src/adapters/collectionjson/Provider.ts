@@ -1,15 +1,35 @@
 // Dependencies ---------------------------------------------------------------
-import { Request, Response, NextFunction } from 'express';
-
 import { Provider as BaseProvider } from '../../Provider';
+import { Options } from '../../index';
+import { Link, Item, Query, Interfaces, Error } from './index';
 
 // Collection+JSON Provider implementation ------------------------------------
-export class Provider extends BaseProvider {
-    contentType = 'application/vnd.collection+json';
+export abstract class Provider extends BaseProvider {
+    getVersion(options?: Options): number {
+        return 1.0;
+    }
 
-    // TODO: If given Collection instance, the provider should generate a simple handler by itself
-    handler = (req: Request, res: Response, next: NextFunction) => {
-        // TODO: Generate Error collection for this message
-        res.send('Not implemented yet');
+    getHref(options?: Options): string | undefined {
+        return undefined;
+    }
+
+    getLinks(options?: Options): Link[] | undefined {
+        return undefined;
+    }
+
+    getItems(options?: Options): Item[] | undefined {
+        return undefined;
+    }
+
+    getQueries(options?: Options): Query[] | undefined {
+        return undefined;
+    }
+
+    getTemplate(options?: Options): Interfaces.Template | undefined {
+        return undefined;
+    }
+
+    getError(options?: Options): Error | undefined {
+        return undefined;
     }
 }

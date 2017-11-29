@@ -6,6 +6,7 @@ import { Item } from "./item";
 import { Link } from "./link";
 import { Query } from "./query";
 
+import * as Interfaces from './interfaces';
 import { Provider } from "./Provider";
 
 export {
@@ -15,5 +16,6 @@ export {
     Item,
     Link,
     Query,
+    Interfaces,
     Provider
 }

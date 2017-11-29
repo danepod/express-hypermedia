@@ -2,8 +2,10 @@ import { EmbeddedLink, EmbeddedRepresentation } from '../subentity';
 import { Action } from '../action';
 import { Link } from '../link';
 import { Provider } from '../Provider';
+import { Entity as BaseEntity } from "../../../Entity";
+import { Options } from '../../../interfaces';
 
-export class Entity {
+export class Entity extends BaseEntity {
     /** 
      * Describes the nature of an entity's content based on the current 
      * representation. Possible values are implementation-dependent and should 
@@ -42,7 +44,15 @@ export class Entity {
      */
     links?: Link[];
 
-    constructor(provider: Provider) {
-        
+    constructor(provider: Provider, options?: Options) {
+        super();
+
+        this.class = provider.getClass(options);
+        this.title = provider.getTitle(options);
+        this.properties = provider.getProperties(options);
+        this.entities = provider.getEntities(options);
+        this.actions = provider.getActions(options);
+        this.links = provider.getLinks(options);
+
     }
 }
