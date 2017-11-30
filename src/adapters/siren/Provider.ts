@@ -1,7 +1,7 @@
 // Dependencies ---------------------------------------------------------------
 import { Provider as BaseProvider } from "../../Provider";
 import  * as Siren from './index';
-import { Options } from '../../index';
+import { Options } from '../../interfaces';
 
 // Siren Provider implementation ----------------------------------------------
 export abstract class Provider extends BaseProvider {

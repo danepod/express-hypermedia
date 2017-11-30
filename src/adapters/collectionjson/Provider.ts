@@ -1,7 +1,7 @@
 // Dependencies ---------------------------------------------------------------
 import { Provider as BaseProvider } from '../../Provider';
-import { Options } from '../../index';
-import { Link, Item, Query, Interfaces, Error } from './index';
+import { Options } from '../../interfaces';
+import * as CJ from './index';
 
 // Collection+JSON Provider implementation ------------------------------------
 export abstract class Provider extends BaseProvider {
@@ -13,19 +13,19 @@ export abstract class Provider extends BaseProvider {
         return undefined;
     }
 
-    getLinks(options?: Options): Link[] | undefined {
+    getLinks(options?: Options): CJ.Link[] | undefined {
         return undefined;
     }
 
-    getItems(options?: Options): Item[] | undefined {
+    getItems(options?: Options): CJ.Item[] | undefined {
         return undefined;
     }
 
-    getQueries(options?: Options): Query[] | undefined {
+    getQueries(options?: Options): CJ.Query[] | undefined {
         return undefined;
     }
 
-    getTemplate(options?: Options): Interfaces.Template | undefined {
+    getTemplate(options?: Options): CJ.Interfaces.Template | undefined {
         return undefined;
     }
 

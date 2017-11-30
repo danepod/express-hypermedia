@@ -30,6 +30,18 @@ export class HypermediaRouter {
                         case 'get':
                             router.get(`${resource.url}${url}`, handler);
                             break;
+                        case 'post':
+                            router.post(`${resource.url}${url}`, handler);
+                            break;
+                        case 'put':
+                            router.put(`${resource.url}${url}`, handler);
+                            break;
+                        case 'patch':
+                            router.delete(`${resource.url}${url}`, handler);
+                            break;
+                        case 'delete':
+                            router.delete(`${resource.url}${url}`, handler);
+                            break;
                         // TODO: Add more HTTP verbs
                         default:
                             break;

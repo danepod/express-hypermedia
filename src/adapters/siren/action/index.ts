@@ -1,15 +1,15 @@
-// import { Request, Response } from 'express';
-import { Method } from "../../../interfaces";
+import { Action as BaseAction } from '../../../Action';
+import { Method, Options } from "../../../interfaces";
 import { Field } from "../interfaces";
 
-export class Action {
+export abstract class Action extends BaseAction {
     /**
      * A string that identifies the action to be performed. Action names MUST 
      * be unique within the set of actions for an entity. The behaviour of 
      * clients when parsing a Siren document that violates this constraint is 
      * undefined.
      */
-    name: string;
+    abstract name: string;
 
     /**
      * Describes the nature of an action based on the current representation. 
@@ -23,10 +23,10 @@ export class Action {
      * introduced, this list can be extended. If this attribute is omitted, 
      * GET should be assumed.
      */
-    method: Method;
+    abstract method: Method;
 
     /** The URI of the action. */
-    href: string;
+    abstract href: string;
 
     /** Descriptive text about the action. */
     title?: string;
@@ -39,25 +39,12 @@ export class Action {
 
     /** A collection of fields. */
     fields?: Field[];
-
-    // TODO: Implement handlers and register actions with their entities
-    //handler: (req: Request, res: Response) => void;
-
+    
     /**
      * Actions show available behaviors an entity exposes.
-     * 
-     * @param name A string that identifies the action to be performed. Action names MUST 
-     * be unique within the set of actions for an entity. The behaviour of 
-     * clients when parsing a Siren document that violates this constraint is 
-     * undefined.
-     * @param href The URI of the action.
      */
-    constructor(
-        name: string,
-        href: string
-    ) {
-        this.name = name;
-        this.href = href;
+    constructor(options?: Options) {
+        super(options);
     }
 }
 
