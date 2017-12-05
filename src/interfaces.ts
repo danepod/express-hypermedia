@@ -2,10 +2,6 @@
 import { Handler } from "express";
 
 // Interfaces and Type Aliases ------------------------------------------------
-export interface RouteMap {
-    [url: string]: Route
-}
-
 export interface Route {
     [method: string]: Handler
 }

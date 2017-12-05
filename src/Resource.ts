@@ -1,6 +1,7 @@
 // Dependencies ---------------------------------------------------------------
+import { Router } from "express";
+
 import { Representation } from "./Representation";
-import { RouteMap } from "./interfaces";
 
 // Resource Implementation ----------------------------------------------------
 export class Resource {
@@ -19,14 +20,39 @@ export class Resource {
         this.representations.push(...currentRepresentations);
     }
 
-    getRoutes(): RouteMap {
-        const routes: RouteMap = {};
-        
-        // TODO: For every Representation, get URL with its handlers and merge it into a RouteMap
-        for (let representation of this.representations) {
-            routes[representation.url] = representation.getRoute();
+    getExpressRouter(): Router {
+        const router = Router();
+
+        for (const representation of this.representations) {
+            const url = representation.url,
+                  handlers = representation.getRoute();
+
+            for (let method in handlers) {
+                let handler = handlers[method];
+
+                switch (method) {
+                    case 'get':
+                        router.get(`${this.url}${url}`, handler);
+                        break;
+                    case 'post':
+                        router.post(`${this.url}${url}`, handler);
+                        break;
+                    case 'put':
+                        router.put(`${this.url}${url}`, handler);
+                        break;
+                    case 'patch':
+                        router.delete(`${this.url}${url}`, handler);
+                        break;
+                    case 'delete':
+                        router.delete(`${this.url}${url}`, handler);
+                        break;
+                    // TODO: Add more HTTP verbs
+                    default:
+                        break;
+                }
+            }
         }
 
-        return routes;
+        return router;
     }
 }
