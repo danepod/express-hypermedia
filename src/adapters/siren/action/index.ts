@@ -1,7 +1,9 @@
+// Dependencies ---------------------------------------------------------------
 import { Action as BaseAction } from '../../../Action';
 import { Method, Options } from "../../../interfaces";
 import { Field } from "../interfaces";
 
+// Siren Action implementation ------------------------------------------------
 export abstract class Action extends BaseAction {
     /**
      * A string that identifies the action to be performed. Action names MUST 

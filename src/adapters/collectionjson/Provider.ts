@@ -25,7 +25,7 @@ export abstract class Provider extends BaseProvider {
         return undefined;
     }
 
-    getTemplate(options?: Options): CJ.Interfaces.Template | undefined {
+    getTemplate(options?: Options): CJ.Template | undefined {
         return undefined;
     }
 

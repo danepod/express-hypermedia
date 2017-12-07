@@ -5,8 +5,8 @@ import { Error } from "./error";
 import { Item } from "./item";
 import { Link } from "./link";
 import { Query } from "./query";
+import { Template } from "./template";
 
-import * as Interfaces from './interfaces';
 import { Provider } from "./Provider";
 
 export {
@@ -16,6 +16,6 @@ export {
     Item,
     Link,
     Query,
-    Interfaces,
+    Template,
     Provider
 }

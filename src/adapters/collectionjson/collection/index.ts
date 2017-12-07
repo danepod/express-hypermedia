@@ -1,7 +1,7 @@
 import { Provider } from "../Provider";
 import { Entity } from '../../../Entity';
 import { Options } from '../../../interfaces';
-import { Link, Item, Query, Error, Interfaces } from '../index';
+import { Link, Item, Query, Error, Template } from '../index';
 
 export class Collection extends Entity {
     version?: number;
@@ -14,7 +14,7 @@ export class Collection extends Entity {
 
     queries?: Query[];
 
-    template?: Interfaces.Template;
+    template?: Template;
 
     error?: Error;
 
