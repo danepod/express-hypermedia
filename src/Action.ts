@@ -3,13 +3,13 @@ import { Options } from "./interfaces";
 
 // Action class declaration ---------------------------------------------------
 export abstract class Action {
-    options?: Options;
+    options: Options;
     
     /**
      * Actions show available behaviors an entity exposes.
      */
     constructor(options?: Options) {
-        this.options = options;
+        this.options = options || {};
     }
     
     /**
@@ -17,4 +17,5 @@ export abstract class Action {
      * action.
      */
     abstract execute(): Options | undefined;
+
 }

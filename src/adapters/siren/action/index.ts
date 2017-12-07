@@ -46,5 +46,17 @@ export abstract class Action extends BaseAction {
     constructor(options?: Options) {
         super(options);
     }
+
+    toJSON(): Object {
+        return {
+            name: this.name,
+            class: this.class,
+            method: this.method,
+            href: this.href,
+            title: this.title,
+            type: this.type,
+            fields: this.fields
+        }
+    }
 }
 
