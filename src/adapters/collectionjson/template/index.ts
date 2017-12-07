@@ -15,10 +15,18 @@ export abstract class Template extends BaseAction {
     execute(): Options {
         if (this.options.method === "post") {
             return this.executePOST();
+        } else if (this.options.method === "put") {
+            return this.executePUT();
+        } else if (this.options.method === "delete") {
+            return this.executeDELETE();
         }
     }
 
     abstract executePOST(): Options;
+
+    abstract executePUT(): Options;
+
+    abstract executeDELETE(): Options;
 
     toJSON(): Object {
         return {
