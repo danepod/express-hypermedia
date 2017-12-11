@@ -6,6 +6,8 @@ import { EmbeddedLink, EmbeddedRepresentation } from './subentity';
 
 import * as Interfaces from './interfaces';
 import { Provider } from './Provider';
+import { Provider as ErrorProvider } from './included/error/provider';
+import { Provider as StatusProvider } from "./included/status/provider";
 
 export {
     Entity,
@@ -14,5 +16,7 @@ export {
     EmbeddedLink,
     EmbeddedRepresentation,
     Provider,
-    Interfaces
+    Interfaces,
+    ErrorProvider,
+    StatusProvider
 }
