@@ -8,6 +8,7 @@ import { Query } from "./query";
 import { Template } from "./template";
 
 import { Provider } from "./Provider";
+import { Provider as StatusProvider } from "./included/status/provider";
 
 export {
     Collection,
@@ -17,5 +18,6 @@ export {
     Link,
     Query,
     Template,
-    Provider
+    Provider,
+    StatusProvider
 }

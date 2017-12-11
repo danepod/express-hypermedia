@@ -29,4 +29,18 @@ export class Collection extends Entity {
         this.template = provider.getTemplate(options);
         this.error = provider.getError(options);
     }
+
+    toJSON(): Object {
+        return {
+            collection: {
+                version: this.version,
+                href: this.href,
+                links: this.links,
+                items: this.items,
+                queries: this.queries,
+                template: this.template,
+                error: this.error
+            }
+        }
+    }
 }

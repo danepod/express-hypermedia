@@ -29,7 +29,7 @@ export abstract class Provider extends BaseProvider {
         return undefined;
     }
 
-    getError(options?: Options): Error | undefined {
+    getError(options?: Options): CJ.Error | undefined {
         return undefined;
     }
 }
