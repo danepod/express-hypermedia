@@ -10,6 +10,8 @@ import { Template } from "./template";
 import { Provider } from "./Provider";
 import { Provider as StatusProvider } from "./included/status/provider";
 
+const mime = "application/vnd.collection+json";
+
 export {
     Collection,
     Data,
@@ -19,5 +21,6 @@ export {
     Query,
     Template,
     Provider,
+    mime,
     StatusProvider
 }

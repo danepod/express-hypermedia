@@ -9,6 +9,8 @@ import { Provider } from './Provider';
 import { Provider as ErrorProvider } from './included/error/provider';
 import { Provider as StatusProvider } from "./included/status/provider";
 
+const mime = "application/vnd.siren+json";
+
 export {
     Entity,
     Link,
@@ -17,6 +19,7 @@ export {
     EmbeddedRepresentation,
     Provider,
     Interfaces,
+    mime,
     ErrorProvider,
     StatusProvider
 }

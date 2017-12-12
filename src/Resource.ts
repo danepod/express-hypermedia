@@ -30,20 +30,20 @@ export class Resource {
             for (let method in handlers) {
                 let handler = handlers[method];
 
-                switch (method) {
-                    case 'get':
+                switch (method.toUpperCase()) {
+                    case 'GET':
                         router.get(`${this.url}${url}`, handler);
                         break;
-                    case 'post':
+                    case 'POST':
                         router.post(`${this.url}${url}`, handler);
                         break;
-                    case 'put':
+                    case 'PUT':
                         router.put(`${this.url}${url}`, handler);
                         break;
-                    case 'patch':
+                    case 'PATCH':
                         router.delete(`${this.url}${url}`, handler);
                         break;
-                    case 'delete':
+                    case 'DELETE':
                         router.delete(`${this.url}${url}`, handler);
                         break;
                     // TODO: Add more HTTP verbs

@@ -1,6 +1,8 @@
 // Dependencies ---------------------------------------------------------------
 import { Route, HandlerMap } from "./interfaces";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, Handler } from "express";
+import { RequestError } from "./error";
+import { Entity } from "./Entity";
 
 // Representation implementation ----------------------------------------------
 export class Representation {
@@ -17,6 +19,28 @@ export class Representation {
         this.keywords.push(...currentKeywords);
     }
 
+    addHandlers(format: string, handlers: {[method: string]: Handler | Entity}, fallback: boolean = false) {
+        for (const method in handlers) {
+            const methodHandler = handlers[method];
+            let handlerFunction: Handler;
+
+            if (methodHandler instanceof Entity) {
+                handlerFunction = (req: Request, res: Response, next: NextFunction) => {
+                    res.json(methodHandler);
+                }
+            } else {
+                handlerFunction = methodHandler;
+            }
+
+            this.handlers[method] = this.handlers[method] || {};
+            this.handlers[method][format] = handlerFunction;
+
+            if (fallback) {
+                this.handlers[method]["default"] = handlerFunction;
+            }
+        }
+    }
+
     getRoute(): Route {
         const route: Route = {};
 
@@ -31,24 +55,14 @@ export class Representation {
                         if (currentMethod[accepts] !== undefined) {
                             return currentMethod[accepts](req, res, next);
                         } else {
-                            return ((req: Request, res: Response, next: NextFunction) => {
-
-                                // TODO: Implement this using error entities
-                                res.status(406);
-                                res.send('Format not supported');
-                            })(req, res, next);
+                            throw new RequestError('Format not supported', 406);
                         }
                     } else {
                         // Return a default handler if given
                         if (currentMethod['default']) {
                             return currentMethod['default'](req, res, next);
                         } else {
-                            return ((req: Request, res: Response, next: NextFunction) => {
-
-                                // TODO: Implement this using error entities
-                                res.status(406);
-                                res.send('Format not supported');
-                            })(req, res, next);
+                            throw new RequestError('Format not supported', 406);
                         }
                     }
 

@@ -13,7 +13,7 @@ export class RequestError extends Error {
     }
 }
 
-export function middleware(err: RequestError, req: Request, res: Response, next: NextFunction) {
+export function errorMiddleware(err: RequestError, req: Request, res: Response, next: NextFunction) {
     const status = err.status || 500,
         message = err.message || "",
         error = req.app.get('env') === 'development' ? err.stack : {};
