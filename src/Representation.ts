@@ -10,16 +10,20 @@ export class Representation {
     url: string;
     handlers: HandlerMap = {};
 
-    constructor(url: string) {
+    constructor(url: string, keywords?: string | string[]) {
         this.url = url;
+
+        if (keywords) {
+            const currentKeywords: string[] = Array.isArray(keywords) ? keywords : [keywords];
+            this.keywords.push(...currentKeywords);
+        }
     }
 
-    addKeywords(keywords: string | string[]): void {
-        const currentKeywords: string[] = Array.isArray(keywords) ? keywords : [keywords];
-        this.keywords.push(...currentKeywords);
-    }
-
-    addHandlers(format: string, handlers: {[method: string]: Handler | Entity}, fallback: boolean = false) {
+    addHandlers(
+        format: string,
+        handlers: {[method: string]: Handler | Entity},
+        fallback: boolean = false
+    ){
         for (const method in handlers) {
             const methodHandler = handlers[method];
             let handlerFunction: Handler;
