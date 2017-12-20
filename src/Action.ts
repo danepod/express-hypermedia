@@ -1,5 +1,6 @@
 // Dependencies ---------------------------------------------------------------
 import { Options } from "./interfaces";
+import { Request } from "express";
 
 // Action class declaration ---------------------------------------------------
 export abstract class Action {
@@ -11,6 +12,10 @@ export abstract class Action {
     constructor(options?: Options) {
         this.options = options || {};
     }
+
+    static validate(req: Request) {
+        return;
+    };
     
     /**
      * Use this method to implement or call business logic needed for the

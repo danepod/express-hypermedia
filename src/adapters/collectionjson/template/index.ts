@@ -2,6 +2,7 @@
 import { Action as BaseAction } from "../../../Action";
 import { Options } from "../../../interfaces";
 import { Data } from "../index";
+import { Request } from "express";
 
 // Collection+JSON Template implementation ------------------------------------
 export abstract class Template extends BaseAction {
@@ -11,22 +12,40 @@ export abstract class Template extends BaseAction {
         super(options);
     }
 
+    static validatePOST(req: Request) {
+        return;
+    };
+
+    static validatePUT(req: Request) {
+        return;
+    };
+
+    static validateDELETE(req: Request) {
+        return;
+    };
+
     //@ts-ignore TODO: Add more handlers
     execute(): Options {
-        if (this.options.method === "post") {
+        if (this.options.method === "POST") {
             return this.executePOST();
-        } else if (this.options.method === "put") {
+        } else if (this.options.method === "PUT") {
             return this.executePUT();
-        } else if (this.options.method === "delete") {
+        } else if (this.options.method === "DELETE") {
             return this.executeDELETE();
         }
     }
 
-    abstract executePOST(): Options;
+    executePOST(): Options {
+        throw new Error("Method not implemented");
+    };
 
-    abstract executePUT(): Options;
+    executePUT(): Options {
+        throw new Error("Method not implemented");
+    };
 
-    abstract executeDELETE(): Options;
+    executeDELETE(): Options {
+        throw new Error("Method not implemented");
+    };
 
     toJSON(): Object {
         return {
