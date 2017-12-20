@@ -2,7 +2,6 @@
 import { Route } from "./interfaces";
 import { Request, Response, NextFunction, Handler } from "express";
 import { RequestError } from "./error";
-import { Entity } from "./Entity";
 
 // Representation implementation ----------------------------------------------
 export class Representation {
@@ -25,26 +24,17 @@ export class Representation {
 
     addHandlers(
         format: string,
-        handlers: {[method: string]: Handler | Entity},
+        handlers: {[method: string]: Handler},
         fallback: boolean = false
     ){
         for (const method in handlers) {
             const methodHandler = handlers[method];
-            let handlerFunction: Handler;
-
-            if (methodHandler instanceof Entity) {
-                handlerFunction = (req: Request, res: Response, next: NextFunction) => {
-                    res.json(methodHandler);
-                }
-            } else {
-                handlerFunction = methodHandler;
-            }
 
             this.handlers[method] = this.handlers[method] || {};
-            this.handlers[method][format] = handlerFunction;
+            this.handlers[method][format] = methodHandler;
 
             if (fallback) {
-                this.handlers[method]["default"] = handlerFunction;
+                this.handlers[method]["default"] = methodHandler;
             }
         }
     }
