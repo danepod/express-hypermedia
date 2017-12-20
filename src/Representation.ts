@@ -1,5 +1,5 @@
 // Dependencies ---------------------------------------------------------------
-import { Route, HandlerMap } from "./interfaces";
+import { Route } from "./interfaces";
 import { Request, Response, NextFunction, Handler } from "express";
 import { RequestError } from "./error";
 import { Entity } from "./Entity";
@@ -8,7 +8,11 @@ import { Entity } from "./Entity";
 export class Representation {
     keywords: string[] = [];
     url: string;
-    handlers: HandlerMap = {};
+    handlers: {
+        [method: string]: {
+            [format: string]: Handler
+        }
+    } = {};
 
     constructor(url: string, keywords?: string | string[]) {
         this.url = url;
