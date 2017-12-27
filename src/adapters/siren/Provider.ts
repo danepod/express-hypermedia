@@ -4,7 +4,15 @@ import  * as Siren from './index';
 import { Options } from '../../interfaces';
 
 // Siren Provider implementation ----------------------------------------------
-export abstract class Provider extends BaseProvider {
+export class Provider extends BaseProvider {
+    entity: Siren.Entity;
+
+    constructor(options?: Options) {
+        super();
+
+        this.entity = new Siren.Entity(this, options);
+    }
+
     getClass(options?: Options): string[] | undefined {
         return undefined;
     }

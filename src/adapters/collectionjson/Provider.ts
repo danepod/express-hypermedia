@@ -4,7 +4,15 @@ import { Options } from '../../interfaces';
 import * as CJ from './index';
 
 // Collection+JSON Provider implementation ------------------------------------
-export abstract class Provider extends BaseProvider {
+export class Provider extends BaseProvider {
+    entity: CJ.Collection;
+
+    constructor(options?: Options) {
+        super();
+
+        this.entity = new CJ.Collection(this, options);
+    }
+
     getVersion(options?: Options): number {
         return 1.0;
     }

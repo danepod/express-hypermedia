@@ -24,14 +24,14 @@ export function errorMiddleware(err: RequestError, req: Request, res: Response, 
 
     switch (accepts) {
         case "application/vnd.siren+json":
-            res.json(new Siren.Entity(new Siren.ErrorProvider(), {
+            res.json(new Siren.ErrorProvider({
                 status,
                 message,
                 error
             }));
             break;
         case "application/vnd.collection+json":
-            res.json(new CJ.Collection(new CJ.StatusProvider(), {
+            res.json(new CJ.StatusProvider({
                 title: message,
                 message: error
             }));

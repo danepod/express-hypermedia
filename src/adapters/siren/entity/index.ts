@@ -53,6 +53,5 @@ export class Entity extends BaseEntity {
         this.entities = provider.getEntities(options);
         this.actions = provider.getActions(options);
         this.links = provider.getLinks(options);
-
     }
 }

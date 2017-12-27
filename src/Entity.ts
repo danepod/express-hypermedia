@@ -1,6 +1,8 @@
 // Dependencies ---------------------------------------------------------------
 
 // Entity class declaration ---------------------------------------------------
-export abstract class Entity {
-    
+export class Entity {
+    toJSON(): any {
+        return this;
+    };
 }

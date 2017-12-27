@@ -30,7 +30,7 @@ export class Collection extends Entity {
         this.error = provider.getError(options);
     }
 
-    toJSON(): Object {
+    toJSON(): any {
         return {
             collection: {
                 version: this.version,
