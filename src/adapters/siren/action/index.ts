@@ -2,7 +2,6 @@
 import { Action as BaseAction } from '../../../Action';
 import { Method, Options } from "../../../interfaces";
 import { Field } from "../interfaces";
-import { Request } from "express";
 
 // Siren Action implementation ------------------------------------------------
 export abstract class Action extends BaseAction {
@@ -48,10 +47,6 @@ export abstract class Action extends BaseAction {
      */
     constructor(options?: Options) {
         super(options);
-    }
-
-    static validate(req: Request) {
-        return;
     }
 
     toJSON(): Object {
