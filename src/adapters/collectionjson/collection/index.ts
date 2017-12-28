@@ -1,7 +1,7 @@
 import { Provider } from "../Provider";
 import { Entity } from '../../../Entity';
 import { Options } from '../../../interfaces';
-import { Link, Item, Query, Error, Template } from '../index';
+import { Link, Item, Query, Error as CJError, Template } from '../index';
 
 export class Collection extends Entity {
     version?: number;
@@ -16,7 +16,7 @@ export class Collection extends Entity {
 
     template?: Template;
 
-    error?: Error;
+    error?: CJError;
 
     constructor(provider: Provider, options?: Options) {
         super();
