@@ -49,7 +49,7 @@ export class Representation {
                 route[method] = (req: Request, res: Response, next: NextFunction) => {
                     const accepts = req.header('Accept');
 
-                    if (accepts !== undefined && accepts !== '*/*') {
+                    if (accepts !== undefined && !accepts.includes('*/*')) {
                         if (currentMethod[accepts] !== undefined) {
                             return currentMethod[accepts](req, res, next);
                         } else {
