@@ -1,6 +1,5 @@
 import { Provider } from "../Provider";
 import { Entity } from '../../../Entity';
-import { Options } from '../../../interfaces';
 import { Link, Item, Query, Error as CJError, Template } from '../index';
 
 export class Collection extends Entity {
@@ -18,7 +17,7 @@ export class Collection extends Entity {
 
     error?: CJError;
 
-    constructor(provider: Provider, options?: Options) {
+    constructor(provider: Provider, options?: Object) {
         super();
 
         this.version = provider.getVersion(options);

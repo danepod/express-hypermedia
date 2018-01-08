@@ -1,6 +1,5 @@
 import { Entity } from '../../entity';
 import { Provider } from '../../Provider';
-import { Options } from '../../../../interfaces';
 
 export class EmbeddedRepresentation extends Entity {
     /** 
@@ -9,7 +8,7 @@ export class EmbeddedRepresentation extends Entity {
      */
     rel: string[];
 
-    constructor(provider: Provider, rels: string | string[], options: Options) {
+    constructor(provider: Provider, rels: string | string[], options: Object) {
         super(provider, options);
 
         this.rel = Array.isArray(rels) ? rels : [rels];

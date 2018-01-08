@@ -1,6 +1,6 @@
 // Dependencies ---------------------------------------------------------------
 import { Action as BaseAction } from '../../../Action';
-import { Method, Options } from "../../../interfaces";
+import { Method } from "../../../interfaces";
 import { Field } from "../interfaces";
 
 // Siren Action implementation ------------------------------------------------
@@ -45,7 +45,7 @@ export abstract class Action extends BaseAction {
     /**
      * Actions show available behaviors an entity exposes.
      */
-    constructor(options?: Options) {
+    constructor(options?: Object) {
         super(options);
     }
 

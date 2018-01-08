@@ -1,6 +1,5 @@
 // Dependencies ---------------------------------------------------------------
 import { Provider as SirenProvider } from "../../Provider";
-import { Interfaces } from "../../../../index";
 
 // Siren status provider implementation ----------------------------------------
 export class Provider extends SirenProvider {
@@ -8,7 +7,7 @@ export class Provider extends SirenProvider {
         return ['status'];
     }
 
-    getProperties(options: Interfaces.Options) {
+    getProperties(options: {message: string}) {
         return {
             message: options.message || ""
         }

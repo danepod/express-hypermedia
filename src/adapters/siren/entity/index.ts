@@ -3,7 +3,6 @@ import { Action } from '../action';
 import { Link } from '../link';
 import { Provider } from '../Provider';
 import { Entity as BaseEntity } from "../../../Entity";
-import { Options } from '../../../interfaces';
 
 export class Entity extends BaseEntity {
     /** 
@@ -44,7 +43,7 @@ export class Entity extends BaseEntity {
      */
     links?: Link[];
 
-    constructor(provider: Provider, options?: Options) {
+    constructor(provider: Provider, options?: Object) {
         super();
 
         this.class = provider.getClass(options);

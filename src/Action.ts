@@ -1,15 +1,14 @@
 // Dependencies ---------------------------------------------------------------
-import { Options } from "./interfaces";
 import { Request } from "express";
 
 // Action class declaration ---------------------------------------------------
 export abstract class Action {
-    options: Options;
+    abstract options: Object;
     
     /**
      * Actions show available behaviors an entity exposes.
      */
-    constructor(options?: Options) {
+    constructor(options?: Object) {
         this.options = options || {};
     }
 
@@ -21,6 +20,6 @@ export abstract class Action {
      * Use this method to implement or call business logic needed for the
      * action.
      */
-    abstract execute(): Options | undefined;
+    abstract execute(): Object | undefined;
 
 }
