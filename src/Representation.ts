@@ -47,26 +47,24 @@ export class Representation {
                 const currentMethod = this.handlers[method];
 
                 route[method] = (req: Request, res: Response, next: NextFunction) => {
-                    const accepts = req.header('Accept');
+                    const acceptHeader = req.header('Accept');
+                    const accepts = ((acceptHeader !== undefined) ? acceptHeader.replace(' ', '').split(',') : ['*/*']);
 
-                    if (accepts !== undefined && !accepts.includes('*/*')) {
-                        if (currentMethod[accepts] !== undefined) {
-                            return currentMethod[accepts](req, res, next);
-                        } else {
-                            throw new RequestError('Format not supported', 406);
-                        }
+                    // Search the accept header for supported formats
+                    const formatMatch = accepts.find(format => {
+                        return currentMethod[format] !== undefined;
+                    });
+
+                    if (formatMatch) {
+                        // Handler for requested format found
+                        return currentMethod[formatMatch](req, res, next);
+                    } else if (currentMethod['default'] && accepts.some(format => format === '*/*')) {
+                        // Client is also happy with a fallback
+                        return currentMethod['default'](req, res, next);
                     } else {
-                        // Return a default handler if given
-                        if (currentMethod['default']) {
-                            return currentMethod['default'](req, res, next);
-                        } else {
-                            throw new RequestError('Format not supported', 406);
-                        }
+                        // Neither the requested format or a fallback are sufficient
+                        throw new RequestError('Format not supported', 406);
                     }
-
-                    // TODO: Replace this naive implementation of content negotiation - https://github.com/cleishm/express-negotiate may be better used in this case
-                    // @ts-ignore
-                    //req.negotiate(currentMethod);
                 }
 
             }
