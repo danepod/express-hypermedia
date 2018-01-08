@@ -6,10 +6,22 @@ import  * as Siren from './index';
 export class Provider extends BaseProvider {
     entity: Siren.Entity;
 
-    constructor(options?: Object) {
+    /**
+     * Creates a Siren Provider object
+     * @param options Object used for entity generation, for example to set an
+     * id to be fetched. The getter methods of the Provider then use this same
+     * object.
+     * @param returnEntity Indicates, if an Entity should be generated 
+     * immediately. Default is true. May be set to false if you want to use 
+     * another kind of Entity, e.g. an EmbeddedRepresentation. You can then
+     * use this provider as a parameter to another Entitys constructor.
+     */
+    constructor(options?: Object, returnEntity: boolean = true) {
         super();
 
-        this.entity = new Siren.Entity(this, options);
+        if(returnEntity) {
+            this.entity = new Siren.Entity(this, options);
+        }
     }
 
     getClass(options?: Object): string[] | undefined {
