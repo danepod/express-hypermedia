@@ -6,7 +6,7 @@ import { Siren, CJ } from "./index";
 export class RequestError extends Error {
     status: number;
 
-    constructor(message: string, status: number) {
+    constructor(message: string, status?: number) {
         super(message);
 
         this.status = status || 500;
@@ -16,7 +16,7 @@ export class RequestError extends Error {
 export function errorMiddleware(err: RequestError, req: Request, res: Response, next: NextFunction) {
     const status = err.status || 500,
         message = err.message || "",
-        error = req.app.get('env') === 'development' ? err.stack : {};
+        error = req.app.get('env') === 'development' ? err.stack : "";
 
     const errorHandlers: {
         [method: string]: Function

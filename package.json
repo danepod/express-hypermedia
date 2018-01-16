@@ -5,13 +5,37 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./lib/**/*.test.js",
+    "coverage": "nyc mocha ./lib/**/*.test.js"
   },
   "author": "Dane Podzkiewitz",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "express-mock-request": "0.0.2"
   },
   "devDependencies": {
-    "@types/express": "^4.0.39"
+    "@types/chai": "^4.1.0",
+    "@types/express": "^4.0.39",
+    "@types/mocha": "^2.2.46",
+    "@types/sinon": "^4.1.2",
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0",
+    "nyc": "^11.4.1",
+    "sinon": "^4.1.4"
+  },
+  "nyc": {
+    "source-map": true,
+    "include": [
+      "lib/**/*.js"
+    ],
+    "exclude": [
+      "**/*.test.js"
+    ],
+    "reporter": [
+      "lcov",
+      "html",
+      "text-summary"
+    ],
+    "all": true
   }
 }

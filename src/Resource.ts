@@ -10,8 +10,14 @@ export class Resource {
     representations: Representation[] = [];
 
     constructor(name: string, url?: string) {
+        url = url || `/${name}s`;
+
+        if(!url.startsWith("/")){
+            url = `/${url}`;
+        }
+
         this.name = name;
-        this.url = url || `/${name}s`
+        this.url = url;
     }
 
     addRepresentations(representations: Representation | Representation[]) {
@@ -30,6 +36,7 @@ export class Resource {
             for (let method in handlers) {
                 let handler = handlers[method];
 
+                // TODO: Add more HTTP verbs
                 switch (method.toUpperCase()) {
                     case 'GET':
                         router.get(`${this.url}${url}`, handler);
@@ -41,13 +48,10 @@ export class Resource {
                         router.put(`${this.url}${url}`, handler);
                         break;
                     case 'PATCH':
-                        router.delete(`${this.url}${url}`, handler);
+                        router.patch(`${this.url}${url}`, handler);
                         break;
                     case 'DELETE':
                         router.delete(`${this.url}${url}`, handler);
-                        break;
-                    // TODO: Add more HTTP verbs
-                    default:
                         break;
                 }
             }
