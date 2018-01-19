@@ -1,5 +1,5 @@
 // Dependencies ---------------------------------------------------------------
-import { Provider as CJProvider } from "../../Provider";
+import { Provider as CJProvider } from "../../index";
 import { Error as CJError } from "../../error";
 
 // Collection+JSON error provider implementation ------------------------------

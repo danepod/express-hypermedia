@@ -3,7 +3,7 @@ import { Provider as BaseProvider } from "../../Provider";
 import  * as Siren from './index';
 
 // Siren Provider implementation ----------------------------------------------
-export class Provider extends BaseProvider {
+export abstract class Provider extends BaseProvider {
     entity: Siren.Entity;
 
     /**

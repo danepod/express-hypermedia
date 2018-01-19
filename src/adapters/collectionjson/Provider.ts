@@ -3,13 +3,15 @@ import { Provider as BaseProvider } from '../../Provider';
 import * as CJ from './index';
 
 // Collection+JSON Provider implementation ------------------------------------
-export class Provider extends BaseProvider {
+export abstract class Provider extends BaseProvider {
     entity: CJ.Collection;
 
-    constructor(options?: Object) {
+    constructor(options?: Object, returnEntity: boolean = true) {
         super();
 
-        this.entity = new CJ.Collection(this, options);
+        if (returnEntity) {
+            this.entity = new CJ.Collection(this, options);
+        }
     }
 
     getVersion(options?: Object): number {
