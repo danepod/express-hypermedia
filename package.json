@@ -6,7 +6,8 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "test": "mocha ./lib/**/*.test.js",
-    "coverage": "nyc mocha ./lib/**/*.test.js"
+    "coverage": "nyc mocha ./lib/**/*.test.js",
+    "testfile": "nyc mocha"
   },
   "author": "Dane Podzkiewitz",
   "dependencies": {

@@ -24,6 +24,15 @@
             "type": "npm",
             "script": "coverage",
             "problemMatcher": []
+        },
+        {
+            "label": "Run only currently open test",
+            "type": "shell",
+            "command": "npm run testfile",
+            "args": [
+                "./lib/**/${fileBasenameNoExtension}.js"
+            ],
+            "problemMatcher": []
         }
     ]
 }
