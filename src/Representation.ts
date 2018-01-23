@@ -48,7 +48,7 @@ export class Representation {
                 const currentMethod = this.handlers[method];
 
                 route[method] = (req: Request, res: Response, next: NextFunction) => {
-                    const accepts = sortAcceptHeader(req.header('Accept') || "*/*");
+                    const accepts = sortAcceptHeader(req.header('Accept'));
 
                     // Search the accept header for supported formats, return the first supported format
                     const formatMatch = accepts.find(format => {

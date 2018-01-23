@@ -4,7 +4,7 @@
  * Note that this doesn't handle any additional parameters besides quality (;q=...), it discards them instead
  * @param accepts The recieved Accept header
  */
-export function sortAcceptHeader(accepts: string): string[] {
+export function sortAcceptHeader(accepts: string = "*/*"): string[] {
     // Regex that matches every format and each formats q value, ignoring the rest
     const regex = RegExp(/([\w*]+\/[\w.+\*]+)(?:(?:;)(?:(?:q=)(\d(?:.\d)?)|(?:[\w]*=)(?:\d(?:.\d)?)))*/,'g');
     let regexMatches;

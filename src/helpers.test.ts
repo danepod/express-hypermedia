@@ -10,9 +10,12 @@ describe("Test sortAcceptHeader Helper", () => {
     }, {
         header: "application/vnd.collection+json",
         expected: ["application/vnd.collection+json"]
+    }, {
+        header: undefined,
+        expected: ["*/*"]
     }].forEach((test) => {
 
-        it("should order formats in the Accept header mostly according to RFC2616, ignoring everything but the q parameter", () => {
+        it(`should order formats in the Accept header mostly according to RFC2616, ignoring everything but the q parameter. (Accept: ${test.header})`, () => {
             expect(sortAcceptHeader(test.header)).to.deep.equal(test.expected);
         });
 
