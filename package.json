@@ -11,8 +11,7 @@
   },
   "author": "Dane Podzkiewitz",
   "dependencies": {
-    "express": "^4.16.2",
-    "express-mock-request": "0.0.2"
+    "express": "^4.16.2"
   },
   "devDependencies": {
     "@types/chai": "^4.1.0",
