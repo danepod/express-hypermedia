@@ -11,6 +11,14 @@ import { Provider as StatusProvider } from "./included/status/provider";
 
 const mime = "application/vnd.siren+json";
 
+const errorHandler = (status: number, message: string, error: string | undefined) => {
+    return new ErrorProvider({
+        status,
+        message,
+        error
+    });
+}
+
 export {
     Entity,
     Link,
@@ -21,5 +29,6 @@ export {
     Interfaces,
     mime,
     ErrorProvider,
-    StatusProvider
+    StatusProvider,
+    errorHandler
 }

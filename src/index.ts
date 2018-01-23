@@ -1,7 +1,7 @@
 import { Resource } from './Resource';
 import { Representation } from './Representation';
 import * as Interfaces from './interfaces';
-import { RequestError, errorMiddleware } from "./error";
+import { RequestError, errorMiddleware, errorHandlerFunction } from "./error";
 
 import * as Siren from './adapters/siren';
 import * as CJ from './adapters/collectionjson';
@@ -13,5 +13,6 @@ export {
     Siren,
     CJ,
     RequestError,
-    errorMiddleware
+    errorMiddleware,
+    errorHandlerFunction
 };

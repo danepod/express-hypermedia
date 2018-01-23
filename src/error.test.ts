@@ -50,7 +50,7 @@ describe("Test errorMiddleware", () => {
         const err = new RequestError("Not found", 404);
         
         // Invoke errorMiddleware
-        errorMiddleware(err, req, res, next);
+        errorMiddleware()(err, req, res, next);
 
         // First assertion can be found in res.json above
 
@@ -83,7 +83,9 @@ describe("Test errorMiddleware", () => {
         const err = new RequestError("Not found", 404);
         
         // Invoke errorMiddleware
-        errorMiddleware(err, req, res, () => {});
+        errorMiddleware({
+            "application/vnd.siren+json": Siren.errorHandler
+        })(err, req, res, () => {});
 
         // Assertion can be found in res.json above
     });
@@ -111,7 +113,9 @@ describe("Test errorMiddleware", () => {
         const err = new RequestError("Not found", 404);
         
         // Invoke errorMiddleware
-        errorMiddleware(err, req, res, () => {});
+        errorMiddleware({
+            "application/vnd.collection+json": CJ.errorHandler
+        })(err, req, res, () => {});
 
         // Assertion can be found in res.json above
     });
@@ -140,8 +144,35 @@ describe("Test errorMiddleware", () => {
         const err = new RequestError("Not found", 404);
         
         // Invoke errorMiddleware
-        errorMiddleware(err, req, res, () => {});
+        errorMiddleware()(err, req, res, () => {});
 
+    });
+
+    it("should send a custom error response as plain text", () => {
+        // Mock request and respone objects by hand because their original constructors are hidden within express and we don't need everything from them
+        const req = <express.Request> {
+            header: (header: string) => "text/html",
+            app: {
+                get: (envVar: string) => "development"
+            }
+        };
+        const res = <express.Response> {
+            status: (code: number) => {},
+            send: (text: any) => {
+                // This contains the assertion; changing the res object is a side effect of an express middleware, by design
+                expect(text).to.equal("<html><head><title>Not found</title></head></html>");
+            }
+        };
+
+        // Create RequestError object
+        const err = new RequestError("Not found", 404);
+        
+        // Invoke errorMiddleware
+        errorMiddleware({
+            "text/html": (status, message, error) => {
+                return `<html><head><title>${message}</title></head></html>`;
+            }
+        })(err, req, res, () => {});
     });
 
     it("should continue with the middleware chain after sending the response", () => {
@@ -163,7 +194,7 @@ describe("Test errorMiddleware", () => {
         const err = new RequestError("Not found", 404);
         
         // Invoke errorMiddleware
-        errorMiddleware(err, req, res, next);
+        errorMiddleware()(err, req, res, next);
 
         // Expect the next callback in the chain to be called with the error object
         sinon.assert.calledOnce(next.withArgs(err));
