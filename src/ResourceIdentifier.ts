@@ -1,5 +1,4 @@
 // Dependencies ---------------------------------------------------------------
-import { Route } from "./interfaces";
 import { Request, Response, NextFunction, Handler } from "express";
 import { RequestError } from "./error";
 import { sortAcceptHeader } from "./helpers";
@@ -40,8 +39,12 @@ export class ResourceIdentifier {
         }
     }
 
-    getRoute(): Route {
-        const route: Route = {};
+    getRoute(): {
+        [method: string]: Handler
+    } {
+        const route: {
+            [method: string]: Handler
+        } = {};
 
         for (const method in this.handlers) {
             if (this.handlers.hasOwnProperty(method)) {
