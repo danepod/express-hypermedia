@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { Resource, Representation } from "./index";
+import { Resource, ResourceIdentifier } from "./index";
 
 describe("Test Resource", () => {
 
@@ -26,37 +26,37 @@ describe("Test Resource", () => {
         expect(res.url).to.equal("/tests");
     });
 
-    it("should add a representation when given one", () => {
-        // Create a dummy representation
-        const rep = <Representation> {};
+    it("should add a ResoureIdentifier when given one", () => {
+        // Create a dummy ResourceIdentifier
+        const rid = <ResourceIdentifier> {};
 
         const res = new Resource("foo");
-        res.addRepresentations(rep);
+        res.addIdentifiers(rid);
 
-        expect(res.representations).to.be.length(1).and.contain(rep);
+        expect(res.resourceIdentifiers).to.be.length(1).and.contain(rid);
     });
 
-    it("should add multiple representations given in an array", () => {
-        // Create a dummy representation
-        const rep1 = <Representation> {},
-              rep2 = <Representation> {};
+    it("should add multiple ResourceIdentifiers given in an array", () => {
+        // Create dummy ResourceIdentifiers
+        const rid1 = <ResourceIdentifier> {},
+              rid2 = <ResourceIdentifier> {};
 
         const res = new Resource("foo");
-        res.addRepresentations([rep1, rep2]);
+        res.addIdentifiers([rid1, rid2]);
 
-        expect(res.representations).to.be.length(2).and.contain(rep1).and.contain(rep2);
+        expect(res.resourceIdentifiers).to.be.length(2).and.contain(rid1).and.contain(rid2);
     });
 
-    it("should return an express router containing all routes defined in the representations", () => {
-        // FIXME: This feels more like an integration test. Try to split it futher, mocking the used Representation instances.
+    it("should return an express router containing all routes defined in the ResourceIdentifier", () => {
+        // FIXME: This feels more like an integration test. Try to split it futher, mocking the used ResourceIdentifier instances.
 
-        // Prepare two Representations and a Resource
-        const rep1 = new Representation('/', ['bar']),
-              rep2 = new Representation('/:id', ['baz']);
+        // Prepare two ResourceIdentifiers and a Resource
+        const rid1 = new ResourceIdentifier('/', ['bar']),
+              rid2 = new ResourceIdentifier('/:id', ['baz']);
 
         const handler = () => {};
 
-        rep1.addHandlers("*/*", {
+        rid1.addHandlers("*/*", {
             "GET": handler,
             "POST": handler,
             "PUT": handler,
@@ -64,15 +64,15 @@ describe("Test Resource", () => {
             "DELETE": handler
         });
 
-        rep2.addHandlers("application/json", {
+        rid2.addHandlers("application/json", {
             "GET": handler,
             "POST": handler
         });
 
         const res = new Resource("foo");
 
-        // Test one representation
-        res.addRepresentations(rep1);
+        // Test one ResourceIdentifier
+        res.addIdentifiers(rid1);
         let router = res.getExpressRouter();
 
         expect(router.stack).to.be.length(5);
@@ -83,8 +83,8 @@ describe("Test Resource", () => {
             expect(element.route.methods).to.have.property(methods[index], true);
         });
 
-        // Add a second Representation
-        res.addRepresentations(rep2);
+        // Add a second ResourceIdentifier
+        res.addIdentifiers(rid2);
         router = res.getExpressRouter();
 
         expect(router.stack).to.be.length(7);

@@ -1,13 +1,13 @@
 // Dependencies ---------------------------------------------------------------
 import { Router } from "express";
 
-import { Representation } from "./Representation";
+import { ResourceIdentifier } from "./ResourceIdentifier";
 
 // Resource Implementation ----------------------------------------------------
 export class Resource {
     name: string;
     url: string; // TODO: Introduce URL type to enforce valid (relative) URLs
-    representations: Representation[] = [];
+    resourceIdentifiers: ResourceIdentifier[] = [];
 
     constructor(name: string, url?: string) {
         url = url || `/${name}s`;
@@ -20,18 +20,18 @@ export class Resource {
         this.url = url;
     }
 
-    addRepresentations(representations: Representation | Representation[]) {
-        const currentRepresentations: Representation[] = Array.isArray(representations) ? representations : [representations];
+    addIdentifiers(resourceIdentifiers: ResourceIdentifier | ResourceIdentifier[]) {
+        const addedIdentifiers: ResourceIdentifier[] = Array.isArray(resourceIdentifiers) ? resourceIdentifiers : [resourceIdentifiers];
 
-        this.representations.push(...currentRepresentations);
+        this.resourceIdentifiers.push(...addedIdentifiers);
     }
 
     getExpressRouter(): Router {
         const router = Router();
 
-        for (const representation of this.representations) {
-            const url = representation.url,
-                  handlers = representation.getRoute();
+        for (const identifier of this.resourceIdentifiers) {
+            const url = identifier.url,
+                  handlers = identifier.getRoute();
 
             for (let method in handlers) {
                 let handler = handlers[method];

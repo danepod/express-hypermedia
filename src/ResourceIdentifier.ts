@@ -4,8 +4,8 @@ import { Request, Response, NextFunction, Handler } from "express";
 import { RequestError } from "./error";
 import { sortAcceptHeader } from "./helpers";
 
-// Representation implementation ----------------------------------------------
-export class Representation {
+// ResourceIdentifier implementation ----------------------------------------------
+export class ResourceIdentifier {
     keywords: string[] = [];
     url: string;
     handlers: {

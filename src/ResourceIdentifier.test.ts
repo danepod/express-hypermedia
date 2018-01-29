@@ -1,63 +1,63 @@
 import { expect } from "chai";
 import "mocha";
 
-import { Representation } from "./Representation";
+import { ResourceIdentifier } from "./ResourceIdentifier";
 import { Request, Response } from 'express';
 import { RequestError } from "./error";
 
-describe("Test Representation", () => {
+describe("Test ResourceIdentifier", () => {
 
-    it("should instantiate the Representation using the given url and an array of keywords", () => {
-        const rep = new Representation("/", ["foo", "bar"]);
+    it("should instantiate the ResourceIdentifier using the given url and an array of keywords", () => {
+        const rid = new ResourceIdentifier("/", ["foo", "bar"]);
 
-        expect(rep.url).to.equal("/");
-        expect(rep.keywords).to.deep.equal(["foo", "bar"]);
+        expect(rid.url).to.equal("/");
+        expect(rid.keywords).to.deep.equal(["foo", "bar"]);
     });
 
-    it("should instantiate the Representation using the given url and a single keyword", () => {
-        const rep = new Representation("/", "foo");
+    it("should instantiate the ResourceIdentifier using the given url and a single keyword", () => {
+        const rid = new ResourceIdentifier("/", "foo");
 
-        expect(rep.url).to.equal("/");
-        expect(rep.keywords).to.deep.equal(["foo"]);
+        expect(rid.url).to.equal("/");
+        expect(rid.keywords).to.deep.equal(["foo"]);
     });
 
-    it("should instantiate the Representation using the given url and a no keywords", () => {
-        const rep = new Representation("/");
+    it("should instantiate the ResourceIdentifier using the given url and a no keywords", () => {
+        const rid = new ResourceIdentifier("/");
 
-        expect(rep.url).to.equal("/");
-        expect(rep.keywords).to.deep.equal([]);
+        expect(rid.url).to.equal("/");
+        expect(rid.keywords).to.deep.equal([]);
     });
 
     it("should add a handler when given one", () => {
-        const rep = new Representation("/");
+        const rid = new ResourceIdentifier("/");
 
         const handlers = {
             "GET": () => "GET",
             "POST": () => "POST"
         };
 
-        rep.addHandlers("application/json", handlers);
+        rid.addHandlers("application/json", handlers);
 
-        expect(rep.handlers["GET"]["application/json"](<Request> {}, <Response> {}, () => {})).to.equal(handlers["GET"]());
+        expect(rid.handlers["GET"]["application/json"](<Request> {}, <Response> {}, () => {})).to.equal(handlers["GET"]());
     });
 
     it("should add a handler when given one, also using it as the fallback if no other format matches the Request", () => {
-        const rep = new Representation("/");
+        const rid = new ResourceIdentifier("/");
 
         const handlers = {
             "GET": () => "GET",
             "POST": () => "POST"
         };
 
-        rep.addHandlers("application/json", handlers, true);
+        rid.addHandlers("application/json", handlers, true);
 
-        expect(rep.handlers["GET"]["application/json"](<Request> {}, <Response> {}, () => {})).to.equal(handlers["GET"]());
+        expect(rid.handlers["GET"]["application/json"](<Request> {}, <Response> {}, () => {})).to.equal(handlers["GET"]());
 
-        expect(rep.handlers["GET"]["default"](<Request> {}, <Response> {}, () => {})).to.equal(handlers["GET"]());
+        expect(rid.handlers["GET"]["default"](<Request> {}, <Response> {}, () => {})).to.equal(handlers["GET"]());
     });
 
     it("should perform content negotiation using an intermediate request handler that returns the actual handler based on the requests accept handler", () => {
-        const rep = new Representation("/");
+        const rid = new ResourceIdentifier("/");
 
         const handlersJSON = {
             "GET": () => "GET JSON",
@@ -68,10 +68,10 @@ describe("Test Representation", () => {
             "GET": () => "GET XML"
         };
 
-        rep.addHandlers("application/json", handlersJSON);
-        rep.addHandlers("application/xml", handlersXML);
+        rid.addHandlers("application/json", handlersJSON);
+        rid.addHandlers("application/xml", handlersXML);
 
-        const route = rep.getRoute();
+        const route = rid.getRoute();
 
         const mockRequestJSON = <Request> {
             header: (header: string) => "application/json"
@@ -87,16 +87,16 @@ describe("Test Representation", () => {
     });
 
     it("should return a default route handler if one exists and the client accepts all formats", () => {
-        const rep = new Representation("/");
+        const rid = new ResourceIdentifier("/");
 
         const handlersJSON = {
             "GET": () => "GET JSON",
             "POST": () => "POST JSON"
         };
 
-        rep.addHandlers("application/json", handlersJSON, true);
+        rid.addHandlers("application/json", handlersJSON, true);
 
-        const route = rep.getRoute();
+        const route = rid.getRoute();
 
         const mockRequest = <Request> {
             header: (header: string) => "*/*"
@@ -108,15 +108,15 @@ describe("Test Representation", () => {
     });
 
     it("should throw an error if no fallback route handler exists and the client requests an unavailable format (but would accept a fallback)", () => {
-        const rep = new Representation("/");
+        const rid = new ResourceIdentifier("/");
 
         const handlersJSON = {
             "GET": () => "GET JSON"
         };
 
-        rep.addHandlers("application/json", handlersJSON);
+        rid.addHandlers("application/json", handlersJSON);
 
-        const route = rep.getRoute();
+        const route = rid.getRoute();
 
         const mockRequest = <Request> {
             header: (header: string) => "text/plain,*/*"
@@ -127,15 +127,15 @@ describe("Test Representation", () => {
     });
 
     it("should throw an error if a fallback route handler exists but the client doesn't accept a fallback", () => {
-        const rep = new Representation("/");
+        const rid = new ResourceIdentifier("/");
 
         const handlersJSON = {
             "GET": () => "GET JSON"
         };
 
-        rep.addHandlers("application/json", handlersJSON, true);
+        rid.addHandlers("application/json", handlersJSON, true);
 
-        const route = rep.getRoute();
+        const route = rid.getRoute();
 
         const mockRequest = <Request> {
             header: (header: string) => "text/plain"
