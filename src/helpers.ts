@@ -1,6 +1,6 @@
 // Helpers --------------------------------------------------------------------
 /**
- * Parses the Accept Header mostly according to RFC2616 Sec. 14.1
+ * Parses the Accept Header mostly according to RFC7231 Sec. 5.3.2.
  * Note that this doesn't handle any additional parameters besides quality (;q=...), it discards them instead
  * @param accepts The recieved Accept header
  */
@@ -11,21 +11,23 @@ export function sortAcceptHeader(accepts: string = "*/*"): string[] {
     
     const accQuality: {
         format: string,
-        quality: number
+        quality: number,
+        specificity: number
     }[] = [];
 
     // Extract formats with their corresponding qualities
     while ((regexMatches = regex.exec(accepts)) !== null) {
         accQuality.push({
             format: regexMatches[1],
-            quality: Number(regexMatches[2]) || 1
+            quality: Number(regexMatches[2]) || 1,
+            specificity: 2 - (regexMatches[1].match(/\*/g) || []).length // Ranks the formats by how specific they're defined. Example: text/plain > text/* > */*
         });
     }
     
-    // Sort array by quality, descending
-    accQuality.sort((a, b) => {
-        return b.quality - a.quality
-    });
+    // Sort array by specificity and quality, descending
+    accQuality
+        .sort((a, b) => b.specificity - a.specificity)
+        .sort((a, b) => b.quality - a.quality);
     
     let result: string[] = [];
     

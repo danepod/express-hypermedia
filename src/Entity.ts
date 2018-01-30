@@ -1,8 +1,6 @@
-// Dependencies ---------------------------------------------------------------
-
 // Entity class declaration ---------------------------------------------------
 export class Entity {
-    toJSON(): any {
+    toJSON(): Entity {
         return this;
     };
 }
