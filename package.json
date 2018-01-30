@@ -2,14 +2,34 @@
   "name": "express-hypermedia",
   "version": "1.0.0",
   "description": "A library that offers the creation of hypermedia resources that works in tandem with express",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
     "test": "mocha ./lib/**/*.test.js",
     "coverage": "nyc mocha ./lib/**/*.test.js",
-    "testfile": "nyc mocha"
+    "testfile": "nyc mocha",
+    "prepublish": "tsc -p ./ --outDir lib/"
   },
   "author": "Dane Podzkiewitz",
+  "homepage": "https://github.com/danepod/express-hypermedia",
+  "bugs":{
+    "url": "https://github.com/danepod/express-hypermedia/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danepod/express-hypermedia.git"
+  },
+  "private": true,
+  "license": "UNLICENSED",
+  "keywords": [
+    "javascript",
+    "js",
+    "typescript",
+    "ts",
+    "express",
+    "hypermedia",
+    "rest"
+  ],
   "dependencies": {
     "express": "^4.16.2"
   },
@@ -22,6 +42,9 @@
     "mocha": "^4.1.0",
     "nyc": "^11.4.1",
     "sinon": "^4.1.4"
+  },
+  "engines": {
+    "node": ">=8.9.4"
   },
   "nyc": {
     "source-map": true,

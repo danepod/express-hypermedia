@@ -6,11 +6,8 @@ Create RESTful hypermedia APIs with ease
 
 This library provides the necessary abstractions to easily create hypermedia APIs using [express](https://expressjs.com/). It supports [Siren](https://github.com/kevinswiber/siren) and [Collection+JSON](http://amundsen.com/media-types/collection/format/). Also, additional formats can be used when implemented using the supplied interfaces.
 
-## Background
-
-## Usage
-
 ## Example project
+An example of `express-hypermedia` in use can be found at https://github.com/danepod/movie-database. This sample project features a small API for movies, demonstrating how to define Resources, ResourceIdentifiers, and making use of content negotiation. It shows how to generate Siren and Collection+JSON responses easily and how to leverage the built-in error handling.
 
 ## Installation
 Because `express-hypermedia` is part of my bachelor's thesis I cannot open-source and publish it until I finished the work on my thesis. As a result of this, it is not available through npm yet. For now, the installation process is as follows:
@@ -26,8 +23,22 @@ Because `express-hypermedia` is part of my bachelor's thesis I cannot open-sourc
 
 **As soon as work on the bachelor's thesis is complete and I recieved the final rating by my university, I will publish the module to npm and update this paragraph accordingyly.**
 
-## Implementing a custom adapter for additional formats
+## Advanced
+### API Reference
+
+### Tests
+This project includes a suite of unit tests, using [Mocha](https://mochajs.org/), [Chai](http://chaijs.com/) and [Sinon](http://sinonjs.org/). At this time, most of the tests cover the logic outside of format adapters. Test files are named `*.test.ts`.
+
+The following commands can be used to execute these tests:
+* `npm test` to run each available test
+* `npm run coverage` to run every test and generate a code coverage report using [nyc](https://istanbul.js.org/). This generates a machine-readable LCOV report as well as HTML pages in the folder `./coverage`
+
+### Implementing a custom adapter for additional formats
 
 ## See also
+ * My [Wissenschaftliche Vertiefung](https://github.com/danepod/wissenschaftliche-vertiefung) (German) covering REST, hypermedia formats and the application of HATEOAS for APIs in the Web. The last chapter explains the rationale behind this project.
+
+ * The [Bachelorarbeit (bachelor's thesis)](https://github.com/danepod/bachelorarbeit) (German) documenting this project. It is the final paper of my studies in the course of "Bachelor of Science Medieninformatik" at Hochschule Düsseldorf.
 
 ## License
+Until the bachelor's thesis covering this project is finished, `express-hypermedia` remains unlicensed. I will publish and open-source it as soon as I can.
