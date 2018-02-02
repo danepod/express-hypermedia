@@ -8,4 +8,9 @@ export class Link {
     render?: string;
 
     prompt?: string;
+
+    constructor(href: string, rel: string) {
+        this.href = href;
+        this.rel = rel;
+    }
 }
