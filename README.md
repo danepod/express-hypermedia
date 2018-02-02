@@ -25,6 +25,7 @@ Because `express-hypermedia` is part of my bachelor's thesis I cannot open-sourc
 
 ## Advanced
 ### API Reference
+For the time being, you can generate documentation of this library using [TypeDoc](http://typedoc.org). To generate an HTML reference, install TypeDoc as advised on their website. Then execute `typedoc --out ./docs --exclude **/*.test.ts ./src` and open [docs/index.html](docs/index.html). I will try to enhance the generation and usefulness of the docs at a later point. Also, I will describe the usage of the library in greater detail in a user's manual which I will write as part of my bachelor's thesis.
 
 ### Tests
 This project includes a suite of unit tests, using [Mocha](https://mochajs.org/), [Chai](http://chaijs.com/) and [Sinon](http://sinonjs.org/). At this time, most of the tests cover the logic outside of format adapters. Test files are named `*.test.ts`.

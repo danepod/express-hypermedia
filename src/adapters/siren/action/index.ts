@@ -44,6 +44,8 @@ export abstract class Action extends BaseAction {
     
     /**
      * Actions show available behaviors an entity exposes.
+     * 
+     * @param options: See options property of the base Action class. This options parameter must be defined in a way that it takes at least all data to be able to create a displayable representation of an action. So for the example stated for the options property of this class, only `id` is needed for that. The options used as the constructor parameter should then be defined as follows: `constructor(options: { id: number, name?: string }) { ...`
      */
     constructor(options?: Object) {
         super(options);

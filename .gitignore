@@ -132,3 +132,6 @@ $RECYCLE.BIN/
 
 ### TypeScript ###
 lib/
+
+### TypeDoc documentation ###
+docs/
