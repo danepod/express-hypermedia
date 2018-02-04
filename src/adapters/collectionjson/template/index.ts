@@ -1,18 +1,14 @@
 // Dependencies ---------------------------------------------------------------
 import { Action as BaseAction } from "../../../Action";
 import { Data } from "../index";
-import { Method } from "../../../interfaces";
 import { Request } from "express";
 
 // Collection+JSON Template implementation ------------------------------------
 export abstract class Template extends BaseAction {
     abstract data: Data[];
-    /* TODO: Find a way to automatically extend upon the parent-class's options
-       type. The user of the lib shouldn't be bothered to add the method
-       property by hand when subclassing */
-    abstract options: {method: Method};
+    abstract options: Object;
 
-    constructor(options?: {method: Method}) {
+    constructor(options?: Object) {
         super(options);
     };
 
@@ -28,15 +24,8 @@ export abstract class Template extends BaseAction {
         return;
     };
 
-    //@ts-ignore TODO: Add more handlers
-    execute(): any {
-        if (this.options.method === "POST") {
-            return this.executePOST();
-        } else if (this.options.method === "PUT") {
-            return this.executePUT();
-        } else if (this.options.method === "DELETE") {
-            return this.executeDELETE();
-        }
+    execute(): never {
+        throw new Error("Use executePOST(), executePUT(), or executeDELETE() instead of execute() for Collection+JSON templates!");
     };
 
     executePOST(): Object {
