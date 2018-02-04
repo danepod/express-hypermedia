@@ -3,6 +3,7 @@
  * Parses the Accept Header mostly according to RFC7231 Sec. 5.3.2.
  * Note that this doesn't handle any additional parameters besides quality (;q=...), it discards them instead
  * @param accepts The recieved Accept header
+ * @returns An array of requested formats, stripped of parameters and in descending order of precedence
  */
 export function sortAcceptHeader(accepts: string = "*/*"): string[] {
     // Regex that matches every format and each formats q value, ignoring the rest

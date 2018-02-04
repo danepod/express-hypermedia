@@ -3,10 +3,9 @@ import { Request } from "express";
 
 // Action class declaration ---------------------------------------------------
 /**
- * Action classes are used to describe mutations for Resources. 
- * This is the Action base class. This abstract class defines the minimal properties and methods an Action should have.
+ * Action classes are used to describe mutations for Resources.
  * 
- * Extend on this class to create Action classes for every hypermedia format adapter. For examples, see Siren.Action or
+ * This is the Action base class. This abstract class defines the minimal properties and methods an Action should have. Extend on this class to create Action classes for every hypermedia format adapter. For examples, see Siren.Action or
  * CJ.Query and CJ.Template.
  * 
  * The library user must then subclass the Actions of each format adapter they wish to use for every combination of

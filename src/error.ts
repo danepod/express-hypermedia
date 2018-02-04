@@ -33,6 +33,7 @@ export type errorHandlerFunction = (status: number, message: string, error: stri
  * 
  * Example: `errorMiddleware({ "text/plain": (status, message, error) => "Error: " + message })`
  * @param handlers Object containing any additional error handlers to be used to generate an error message. The object is indexed by the MIME-type that shall be handled. Any handler function may return an object (which will get JSON serialized in the response) or string. Not using this parameter will result in all error messages getting serialized in a default JSON object.
+ * @returns Express middleware function
  */
 export function errorMiddleware(handlers?: {
     [format: string]: errorHandlerFunction
