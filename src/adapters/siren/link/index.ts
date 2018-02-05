@@ -1,3 +1,6 @@
+/**
+ * Links represent navigational transitions.
+ */
 export class Link {
     /** 
      * Defines the relationship of the link to its entity, per Web Linking 
@@ -24,7 +27,12 @@ export class Link {
      */
     type?: string;
 
-    /** Links represent navigational transitions. */
+    /**
+     * Links represent navigational transitions.
+     * 
+     * @param rel Set the relation property of the resulting Link object
+     * @param href Set the href property of the resulting Link object
+     */
     constructor (
         rel: string | string[],
         href: string

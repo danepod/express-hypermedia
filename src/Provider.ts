@@ -5,7 +5,7 @@ import { Entity } from "./Entity";
 /**
  * Provider classes are used to fill the gap between business logic and responses as defined through Entities. They are used to fill in the properties of an Entity class by providing methods calling business logic and formatting the output to be valid for the used format.
  * 
- * This is the Provider base class. This abstract class defineds the minimal properties and methods a Provider should have. Extend on this class to create Provider classes for each hypermedia format adapter. For examples, see Siren.Provider or CJ.Provider.
+ * This is the Provider base class. This abstract class defines the minimal properties and methods a Provider should have. Extend on this class to create Provider classes for each hypermedia format adapter. For examples, see Siren.Provider or CJ.Provider.
  * 
  * The library user must then subclass the Provider of each format adpater they wish to use for every combination of format and ResourceIdentifier. See [Movie List Provider (Siren)](https://github.com/danepod/movie-database/blob/master/src/resources/movie/list/siren/provider.ts) and [Movie List Provider (CJ)](https://github.com/danepod/movie-database/blob/master/src/resources/movie/list/collectionjson/provider.ts) for concrete examples of this.
  */

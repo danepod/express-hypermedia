@@ -4,6 +4,9 @@ import { Method } from "../../../interfaces";
 import { Field } from "../interfaces";
 
 // Siren Action implementation ------------------------------------------------
+/**
+ * Actions show available behaviors an entity exposes.
+ */
 export abstract class Action extends BaseAction {
     /**
      * A string that identifies the action to be performed. Action names MUST 
@@ -51,6 +54,9 @@ export abstract class Action extends BaseAction {
         super(options);
     }
 
+    /**
+     * Defines how a Siren Action will be serialized into JSON. We don't want all properties to be sent with the response, so this filters some internals.
+     */
     toJSON(): Object {
         return {
             name: this.name,

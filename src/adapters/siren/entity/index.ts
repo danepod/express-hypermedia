@@ -1,9 +1,9 @@
-import { EmbeddedLink, EmbeddedRepresentation } from '../subentity';
-import { Action } from '../action';
-import { Link } from '../link';
-import { Provider } from '../Provider';
+import * as Siren from "../index";
 import { Entity as BaseEntity } from "../../../Entity";
 
+/**
+ * An Entity is a URI-addressable resource that has properties and actions associated with it. It may contain sub-entities and navigational links.
+ */
 export class Entity extends BaseEntity {
     /** 
      * Describes the nature of an entity's content based on the current 
@@ -27,13 +27,13 @@ export class Entity extends BaseEntity {
      *  MUST contain a rel attribute to describe its relationship to the parent
      *  entity.
      */
-    entities?: (EmbeddedLink | EmbeddedRepresentation)[];
+    entities?: (Siren.EmbeddedLink | Siren.EmbeddedRepresentation)[];
 
     /**
      * A collection of actions; actions show available behaviors an entity 
      * exposes.
      */
-    actions?: Action[];
+    actions?: Siren.Action[];
 
     /**
      * A collection of items that describe navigational links, distinct from 
@@ -41,9 +41,14 @@ export class Entity extends BaseEntity {
      * describe the relationship and an `href` attribute to point to the target
      *  URI. Entities should include a link `rel` to `self`.
      */
-    links?: Link[];
+    links?: Siren.Link[];
 
-    constructor(provider: Provider, options?: Object) {
+    /**
+     * An Entity is a URI-addressable resource that has properties and actions associated with it. It may contain sub-entities and navigational links.
+     * @param provider The provider containing the methods to fill in the Entity's properties
+     * @param options Object containing all data the Provider needs to fill in the Entity's properties
+     */
+    constructor(provider: Siren.Provider, options?: Object) {
         super();
 
         this.class = provider.getClass(options);
