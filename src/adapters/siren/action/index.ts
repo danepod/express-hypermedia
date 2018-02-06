@@ -6,6 +6,10 @@ import { Field } from "../interfaces";
 // Siren Action implementation ------------------------------------------------
 /**
  * Actions show available behaviors an entity exposes.
+ * 
+ * This is the Siren Action base class. This abstract class defines the properties and methods each Siren Action can implement. An actual Siren Action does not need to implement every property as some of the properties may be intentionally left blank. Abstract methods and properties must be implemented though. Extend on this class to create actual Siren Actions, implement every method and property that is abstract in this class as well as the remaining parts you may need.
+ * 
+ * See [Movie List Actions (Siren)](https://github.com/danepod/movie-database/blob/master/src/resources/movie/list/siren/actions.ts) and [Movie Detail Actions (Siren)](https://github.com/danepod/movie-database/blob/master/src/resources/movie/detail/siren/actions.ts) for concrete examples of this.
  */
 export abstract class Action extends BaseAction {
     /**

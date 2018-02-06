@@ -1,13 +1,19 @@
 // Dependencies ---------------------------------------------------------------
-import { Provider as CJProvider } from "../../index";
-import { Error as CJError } from "../../error";
+import * as CJ from "../../index";
 
 // Collection+JSON error provider implementation ------------------------------
-export class Provider extends CJProvider {
+/**
+ * Provider that generates error messages formatted for Collection+JSON clients
+ */
+export class Provider extends CJ.Provider {
+    /**
+     * Set the error object of the collection
+     * @param options Obejct containing all data to create an error message
+     */
     getError(options: {
         title: string,
         message: string
-    }): CJError {
-        return new CJError(options.title, options.message);
+    }): CJ.Error {
+        return new CJ.Error(options.title, options.message);
     }
 }

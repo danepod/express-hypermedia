@@ -44,7 +44,7 @@ export abstract class Action {
     };
     
     /**
-     * Use this method to implement or call business logic needed for the
+     * Use this method to implement calls to business logic needed for the
      * action.
      * 
      * @returns An object containing all data that is needed for the request handler to finish the request. Example of data to be returned here may be the id of a newly generated database record for a redirection.

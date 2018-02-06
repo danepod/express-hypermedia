@@ -6,9 +6,9 @@ import * as Siren from './index';
 /**
  * Provider class used to fill the gap between business logic and Siren Entities. They are used to fill in the properties of a Siren Entity by providing methods that call business logic and format the output to be valid Siren.
  * 
- * This is the Siren Provider base class. This abstract class defines the methods each Siren Provider can implement. An actual Siren Provider does not need to implement every method as some of the properties may be left undefined in a Siren response. Extend on this class to create actual Siren Provider classes and implement each method you need to use.
+ * This is the Siren Provider base class. This abstract class defines the methods each Siren Provider can implement. An actual Siren Provider does not need to implement every method as some of the properties may be intentionally left undefined in a Siren response. Extend on this class to create actual Siren Provider classes and implement each method you need to use.
  * 
- * See [Movie List Provider (Siren)](https://github.com/danepod/movie-database/blob/master/src/resources/movie/list/siren/provider.ts) and [Movie List Provider (CJ)](https://github.com/danepod/movie-database/blob/master/src/resources/movie/list/collectionjson/provider.ts) for concrete examples of this.
+ * See [Movie List Provider (Siren)](https://github.com/danepod/movie-database/blob/master/src/resources/movie/list/siren/provider.ts) and [Movie Detail Provider (Siren)](https://github.com/danepod/movie-database/blob/master/src/resources/movie/detail/siren/provider.ts) for concrete examples of this.
  */
 export abstract class Provider extends BaseProvider {
     /**
@@ -24,7 +24,7 @@ export abstract class Provider extends BaseProvider {
      * @param returnEntity Indicates, if an Entity should be generated 
      * immediately. Default is true. May be set to false if you want to use 
      * another kind of Entity, e.g. an EmbeddedRepresentation. You can then
-     * use this provider as a parameter to another Entitys constructor.
+     * use this Provider as a parameter to another Entity's constructor.
      */
     constructor(options?: Object, returnEntity: boolean = true) {
         super();

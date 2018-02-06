@@ -2,7 +2,7 @@ import * as Siren from "../index";
 import { Entity as BaseEntity } from "../../../Entity";
 
 /**
- * An Entity is a URI-addressable resource that has properties and actions associated with it. It may contain sub-entities and navigational links.
+ * An Entity is an URI-addressable resource that has properties and actions associated with it. It may contain sub-entities and navigational links.
  */
 export class Entity extends BaseEntity {
     /** 
