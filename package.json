@@ -8,11 +8,12 @@
     "test": "mocha ./lib/**/*.test.js",
     "coverage": "nyc mocha ./lib/**/*.test.js",
     "testfile": "nyc mocha",
-    "prepublish": "tsc -p ./ --outDir lib/"
+    "prepare": "tsc -p ./ --outDir lib/",
+    "prepublishOnly": "tsc -p ./ --outDir lib/"
   },
   "author": "Dane Podzkiewitz",
   "homepage": "https://github.com/danepod/express-hypermedia",
-  "bugs":{
+  "bugs": {
     "url": "https://github.com/danepod/express-hypermedia/issues"
   },
   "repository": {
