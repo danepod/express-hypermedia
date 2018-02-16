@@ -4,7 +4,7 @@ import * as CJ from './index';
 
 // Collection+JSON Provider implementation ------------------------------------
 export abstract class Provider extends BaseProvider {
-    entity: CJ.Collection;
+    entity!: CJ.Collection;
 
     constructor(options?: Object, returnEntity: boolean = true) {
         super();

@@ -12,7 +12,7 @@ An example of `express-hypermedia` in use can be found at https://github.com/dan
 ## Installation
 Because `express-hypermedia` is part of my bachelor's thesis I cannot open-source and publish it until I finished the work on my thesis. As a result of this, it is not available through npm yet. For now, the installation process is as follows:
 
-*Requirements: NodeJS 8.9.4, Typescript 2.6.2*
+*Requirements: NodeJS 8.9.4, Typescript 2.7.2*
 
 1. Download this repository (*the following commands assume you use a terminal with the repository's folder active*)
 2. Install dependencies: `npm install`

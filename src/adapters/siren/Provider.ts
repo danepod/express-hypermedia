@@ -14,7 +14,7 @@ export abstract class Provider extends BaseProvider {
     /**
      * The Siren entity that is used by the Provider. An Entity contains the properties that get serialized into a response.
      */
-    entity: Siren.Entity;
+    entity!: Siren.Entity;
 
     /**
      * Creates a Siren Provider object
