@@ -14,7 +14,8 @@ export abstract class Provider extends BaseProvider {
     /**
      * The Collection that is used by the Provider. A Collection contains the properties that get serialized into a response.
      */
-    entity: CJ.Collection;
+    entity!: CJ.Collection;
+
 
     /**
      * Creates a Collection+JSON Provider object
