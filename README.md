@@ -1,8 +1,8 @@
 # express-hypermedia
 
-[![Build Status](https://travis-ci.com/danepod/express-hypermedia.svg?token=CxjnV4mixhFKLGqmq2Zt&branch=master)](https://travis-ci.com/danepod/express-hypermedia)
+> Create RESTful hypermedia APIs with ease
 
-Create RESTful hypermedia APIs with ease
+[![Build Status](https://travis-ci.com/danepod/express-hypermedia.svg?token=CxjnV4mixhFKLGqmq2Zt&branch=master)](https://travis-ci.com/danepod/express-hypermedia)
 
 This library provides the necessary abstractions to easily create hypermedia APIs using [express](https://expressjs.com/). It supports [Siren](https://github.com/kevinswiber/siren) and [Collection+JSON](http://amundsen.com/media-types/collection/format/). Also, additional formats can be used when implemented using the supplied interfaces.
 
