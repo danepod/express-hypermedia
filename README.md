@@ -15,9 +15,8 @@ Because `express-hypermedia` is part of my bachelor's thesis I cannot open-sourc
 *Requirements: NodeJS 8.9.4, Typescript 2.7.2*
 
 1. Download this repository (*the following commands assume you use a terminal with the repository's folder active*)
-2. Install dependencies: `npm install`
-3. Compile TypeScript to JavaScript: `tsc`
-4. To use `express-hypermedia` within another TS/JS project:
+2. Install dependencies: `npm install`, this also automatically compiles the project via TypeScript
+3. (*Temporary*) To use `express-hypermedia` within another TS/JS project:
    
    Execute `npm link` inside the root folder of `express-hypermedia`. Next, you change to the folder of your project that you want to use `express-hypermedia` with and execute `npm link express-hypermedia`. This way, npm generates a Symlink to the library within the project's node_modules folder. You can now use `express-hypermedia` as if it were normally installed through npm.
 
@@ -25,7 +24,7 @@ Because `express-hypermedia` is part of my bachelor's thesis I cannot open-sourc
 
 ## Advanced
 ### API Reference
-For the time being, you can generate documentation of this library using [TypeDoc](http://typedoc.org). To generate an HTML reference, install TypeDoc as advised on their website. Then execute `typedoc --out ./docs --exclude **/*.test.ts ./src` and open [docs/index.html](docs/index.html). I will try to enhance the generation and usefulness of the docs at a later point. Also, I will describe the usage of the library in greater detail in a user's manual which I will write as part of my bachelor's thesis.
+You can generate documentation of this library using [TypeDoc](http://typedoc.org). To generate an HTML reference, execute `npm run doc` and open [docs/index.html](docs/index.html).
 
 ### Tests
 This project includes a suite of unit tests, using [Mocha](https://mochajs.org/), [Chai](http://chaijs.com/) and [Sinon](http://sinonjs.org/). At this time, most of the tests cover the logic outside of format adapters. Test files are named `*.test.ts`.
