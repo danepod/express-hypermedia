@@ -8,8 +8,9 @@ import { Link } from "./link";
 import { Query } from "./query";
 import { Template } from "./template";
 
-import { Provider as StatusProvider } from "./included/status/provider";
 import { Provider } from "./Provider";
+// tslint:disable-next-line:ordered-imports This MUST be imported after Provider because it depends on it. If not done this way, this will fail in runtime!
+import { Provider as StatusProvider } from "./included/status/provider";
 
 /**
  * The MIME type of this adapter
