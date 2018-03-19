@@ -1,6 +1,6 @@
 /**
  * This represents the Data object structure as defined in the Collection+JSON spec.
- * 
+ *
  * It resembles a key-value pair as well as a human-readable and localizable prompt. This is used in several occasions, e.g. to serialize key-value pairs for Items, or to inform a client of available fields for sending data in Templates.
  */
 export class Data {

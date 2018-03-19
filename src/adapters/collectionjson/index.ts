@@ -2,14 +2,14 @@
 import { Collection } from "./collection";
 import { Data } from "./data";
 import { Error } from "./error";
+import { Render } from "./interfaces";
 import { Item } from "./item";
 import { Link } from "./link";
 import { Query } from "./query";
 import { Template } from "./template";
-import { Render } from "./interfaces";
 
-import { Provider } from "./Provider";
 import { Provider as StatusProvider } from "./included/status/provider";
+import { Provider } from "./Provider";
 
 /**
  * The MIME type of this adapter
@@ -42,4 +42,4 @@ export {
     mime,
     StatusProvider,
     errorHandler
-}
+};

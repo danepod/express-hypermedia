@@ -10,7 +10,7 @@ export class Provider extends SirenProvider {
      * Set the class of the error message Entity to 'error'
      */
     getClass() {
-        return ['error'];
+        return ["error"];
     }
 
     /**
@@ -26,7 +26,7 @@ export class Provider extends SirenProvider {
             status: options.status || 500,
             message: options.message || "",
             error: options.error
-        }
+        };
     }
-    
+
 }

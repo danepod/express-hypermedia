@@ -7,9 +7,9 @@
  */
 export function sortAcceptHeader(accepts: string = "*/*"): string[] {
     // Regex that matches every format and each formats q value, ignoring the rest
-    const regex = RegExp(/([\w*]+\/[\w.+\*]+)(?:(?:;)(?:(?:q=)(\d(?:.\d)?)|(?:[\w]*=)(?:\d(?:.\d)?)))*/,'g');
+    const regex = RegExp(/([\w*]+\/[\w.+\*]+)(?:(?:;)(?:(?:q=)(\d(?:.\d)?)|(?:[\w]*=)(?:\d(?:.\d)?)))*/, "g");
     let regexMatches;
-    
+
     const accQuality: {
         format: string,
         quality: number,
@@ -17,6 +17,7 @@ export function sortAcceptHeader(accepts: string = "*/*"): string[] {
     }[] = [];
 
     // Extract formats with their corresponding qualities
+    // tslint:disable-next-line:no-conditional-assignment
     while ((regexMatches = regex.exec(accepts)) !== null) {
         accQuality.push({
             format: regexMatches[1],
@@ -24,16 +25,16 @@ export function sortAcceptHeader(accepts: string = "*/*"): string[] {
             specificity: 2 - (regexMatches[1].match(/\*/g) || []).length // Ranks the formats by how specific they're defined. Example: text/plain > text/* > */*
         });
     }
-    
+
     // Sort array by specificity and quality, descending
     accQuality
         .sort((a, b) => b.specificity - a.specificity)
         .sort((a, b) => b.quality - a.quality);
-    
+
     let result: string[] = [];
-    
+
     // Copy the formats in descending order of quality, omitting the quality value
-    accQuality.forEach((element) => {
+    accQuality.forEach(element => {
         result.push(element.format);
     });
 

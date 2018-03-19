@@ -1,9 +1,9 @@
 import { expect } from "chai";
+import { Request, Response } from "express";
 import "mocha";
 
-import { ResourceIdentifier } from "./ResourceIdentifier";
-import { Request, Response } from 'express';
 import { RequestError } from "./error";
+import { ResourceIdentifier } from "./ResourceIdentifier";
 
 describe("Test ResourceIdentifier", () => {
 
@@ -32,40 +32,40 @@ describe("Test ResourceIdentifier", () => {
         const rid = new ResourceIdentifier("/");
 
         const handlers = {
-            "GET": () => "GET",
-            "POST": () => "POST"
+            GET: () => "GET",
+            POST: () => "POST"
         };
 
         rid.addHandlers("application/json", handlers);
 
-        expect(rid.handlers["GET"]["application/json"](<Request> {}, <Response> {}, () => {})).to.equal(handlers["GET"]());
+        expect(rid.handlers.GET["application/json"]({} as Request, {} as Response, () => {})).to.equal(handlers.GET());
     });
 
     it("should add a handler when given one, also using it as the fallback if no other format matches the Request", () => {
         const rid = new ResourceIdentifier("/");
 
         const handlers = {
-            "GET": () => "GET",
-            "POST": () => "POST"
+            GET: () => "GET",
+            POST: () => "POST"
         };
 
         rid.addHandlers("application/json", handlers, true);
 
-        expect(rid.handlers["GET"]["application/json"](<Request> {}, <Response> {}, () => {})).to.equal(handlers["GET"]());
+        expect(rid.handlers.GET["application/json"]({} as Request, {} as Response, () => {})).to.equal(handlers.GET());
 
-        expect(rid.handlers["GET"]["default"](<Request> {}, <Response> {}, () => {})).to.equal(handlers["GET"]());
+        expect(rid.handlers.GET.default({} as Request, {} as Response, () => {})).to.equal(handlers.GET());
     });
 
     it("should perform content negotiation using an intermediate request handler that returns the actual handler based on the requests accept handler", () => {
         const rid = new ResourceIdentifier("/");
 
         const handlersJSON = {
-            "GET": () => "GET JSON",
-            "POST": () => "POST JSON"
+            GET: () => "GET JSON",
+            POST: () => "POST JSON"
         };
 
         const handlersXML = {
-            "GET": () => "GET XML"
+            GET: () => "GET XML"
         };
 
         rid.addHandlers("application/json", handlersJSON);
@@ -73,75 +73,75 @@ describe("Test ResourceIdentifier", () => {
 
         const route = rid.getRoute();
 
-        const mockRequestJSON = <Request> {
+        const mockRequestJSON = {
             header: (header: string) => "application/json"
-        };
-        const mockRequestXML = <Request> {
+        } as Request;
+        const mockRequestXML = {
             header: (header: string) => "application/xml"
-        };
-        const mockResponse = <Response> {};
+        } as Request;
+        const mockResponse = {} as Response;
 
-        expect(route["GET"](mockRequestJSON, mockResponse, () => {})).to.equal(handlersJSON["GET"]());
-        expect(route["POST"](mockRequestJSON, mockResponse, () => {})).to.equal(handlersJSON["POST"]());
-        expect(route["GET"](mockRequestXML, mockResponse, () => {})).to.equal(handlersXML["GET"]());
+        expect(route.GET(mockRequestJSON, mockResponse, () => {})).to.equal(handlersJSON.GET());
+        expect(route.POST(mockRequestJSON, mockResponse, () => {})).to.equal(handlersJSON.POST());
+        expect(route.GET(mockRequestXML, mockResponse, () => {})).to.equal(handlersXML.GET());
     });
 
     it("should return a default route handler if one exists and the client accepts all formats", () => {
         const rid = new ResourceIdentifier("/");
 
         const handlersJSON = {
-            "GET": () => "GET JSON",
-            "POST": () => "POST JSON"
+            GET: () => "GET JSON",
+            POST: () => "POST JSON"
         };
 
         rid.addHandlers("application/json", handlersJSON, true);
 
         const route = rid.getRoute();
 
-        const mockRequest = <Request> {
+        const mockRequest = {
             header: (header: string) => "*/*"
-        };
-        const mockResponse = <Response> {};
+        } as Request;
+        const mockResponse = {} as Response;
 
-        expect(route["GET"](mockRequest, mockResponse, () => {})).to.equal(handlersJSON["GET"]());
-        expect(route["POST"](mockRequest, mockResponse, () => {})).to.equal(handlersJSON["POST"]());
+        expect(route.GET(mockRequest, mockResponse, () => {})).to.equal(handlersJSON.GET());
+        expect(route.POST(mockRequest, mockResponse, () => {})).to.equal(handlersJSON.POST());
     });
 
     it("should throw an error if no fallback route handler exists and the client requests an unavailable format (but would accept a fallback)", () => {
         const rid = new ResourceIdentifier("/");
 
         const handlersJSON = {
-            "GET": () => "GET JSON"
+            GET: () => "GET JSON"
         };
 
         rid.addHandlers("application/json", handlersJSON);
 
         const route = rid.getRoute();
 
-        const mockRequest = <Request> {
+        const mockRequest = {
             header: (header: string) => "text/plain,*/*"
-        };
-        const mockResponse = <Response> {};
+        } as Request;
+        const mockResponse = {} as Response;
 
-        expect(() => route["GET"](mockRequest, mockResponse, () => {})).to.throw(RequestError, 'Format not supported');
+        expect(() => route.GET(mockRequest, mockResponse, () => {})).to.throw(RequestError, "Format not supported");
     });
 
     it("should throw an error if a fallback route handler exists but the client doesn't accept a fallback", () => {
         const rid = new ResourceIdentifier("/");
 
         const handlersJSON = {
-            "GET": () => "GET JSON"
+            GET: () => "GET JSON"
         };
 
         rid.addHandlers("application/json", handlersJSON, true);
 
         const route = rid.getRoute();
 
-        const mockRequest = <Request> {
+        const mockRequest = {
             header: (header: string) => "text/plain"
-        };
-        const mockResponse = <Response> {};
+        } as Request;
+        const mockResponse = {} as Response;
 
-        expect(() => route["GET"](mockRequest, mockResponse, () => {})).to.throw(RequestError, 'Format not supported');
+        expect(() => route.GET(mockRequest, mockResponse, () => {})).to.throw(RequestError, "Format not supported");
     });
 });

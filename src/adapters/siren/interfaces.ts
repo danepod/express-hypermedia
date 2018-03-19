@@ -2,7 +2,7 @@
 /**
  * Fields represent controls inside of actions.
  */
-export interface Field {
+export interface IField {
     /**
      * A name describing the control. Field names MUST be unique within the set of fields for an action. The behaviour of clients when parsing a Siren document that violates this constraint is undefined. Required.
      */
@@ -26,13 +26,13 @@ export interface Field {
     /**
      * A value assigned to the field. Optional.
      */
-    value?: (string | number) | FieldValueObject
+    value?: (string | number) | IFieldValueObject
 }
 
 /**
  * Value objects represent multiple selectable field values. Use in conjunction with field `"type" = "radio"` and `"type" = "checkbox"` to express that zero, one or many out of several possible values may be sent back to the server.
  */
-export interface FieldValueObject {
+export interface IFieldValueObject {
     /**
      * Textual description of a field value.
      */

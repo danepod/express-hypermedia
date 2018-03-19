@@ -28,7 +28,7 @@ describe("Test Resource", () => {
 
     it("should add a ResoureIdentifier when given one", () => {
         // Create a dummy ResourceIdentifier
-        const rid = <ResourceIdentifier> {};
+        const rid = {} as ResourceIdentifier;
 
         const res = new Resource("foo");
         res.addIdentifiers(rid);
@@ -38,8 +38,8 @@ describe("Test Resource", () => {
 
     it("should add multiple ResourceIdentifiers given in an array", () => {
         // Create dummy ResourceIdentifiers
-        const rid1 = <ResourceIdentifier> {},
-              rid2 = <ResourceIdentifier> {};
+        const rid1 = {} as ResourceIdentifier;
+        const rid2 = {} as ResourceIdentifier;
 
         const res = new Resource("foo");
         res.addIdentifiers([rid1, rid2]);
@@ -51,22 +51,22 @@ describe("Test Resource", () => {
         // FIXME: This feels more like an integration test. Try to split it futher, mocking the used ResourceIdentifier instances.
 
         // Prepare two ResourceIdentifiers and a Resource
-        const rid1 = new ResourceIdentifier('/', ['bar']),
-              rid2 = new ResourceIdentifier('/:id', ['baz']);
+        const rid1 = new ResourceIdentifier("/", ["bar"]);
+        const rid2 = new ResourceIdentifier("/:id", ["baz"]);
 
         const handler = () => {};
 
         rid1.addHandlers("*/*", {
-            "GET": handler,
-            "POST": handler,
-            "PUT": handler,
-            "PATCH": handler,
-            "DELETE": handler
+            GET: handler,
+            POST: handler,
+            PUT: handler,
+            PATCH: handler,
+            DELETE: handler
         });
 
         rid2.addHandlers("application/json", {
-            "GET": handler,
-            "POST": handler
+            GET: handler,
+            POST: handler
         });
 
         const res = new Resource("foo");
@@ -90,10 +90,10 @@ describe("Test Resource", () => {
         expect(router.stack).to.be.length(7);
 
         expect(router.stack[5].route.path).to.equal("/foos/:id");
-        expect(router.stack[5].route.methods).to.have.property("get", true)
+        expect(router.stack[5].route.methods).to.have.property("get", true);
 
         expect(router.stack[6].route.path).to.equal("/foos/:id");
-        expect(router.stack[6].route.methods).to.have.property("post", true)
+        expect(router.stack[6].route.methods).to.have.property("post", true);
 
     });
 

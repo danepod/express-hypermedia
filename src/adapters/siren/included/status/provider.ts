@@ -10,7 +10,7 @@ export class Provider extends SirenProvider {
      * Set the class of the status message Entity to 'status'
      */
     getClass() {
-        return ['status'];
+        return ["status"];
     }
 
     /**
@@ -20,7 +20,7 @@ export class Provider extends SirenProvider {
     getProperties(options: { message: string }) {
         return {
             message: options.message || ""
-        }
+        };
     }
-    
+
 }

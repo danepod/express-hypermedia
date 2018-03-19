@@ -1,6 +1,6 @@
+import { Entity } from "../../../Entity";
+import { Error as CJError, Item, Link, Query, Template } from "../index";
 import { Provider } from "../Provider";
-import { Entity } from '../../../Entity';
-import { Link, Item, Query, Error as CJError, Template } from '../index';
 
 /**
  * A Collection is an URI-addressable resource that contains items and navigational information. It may contain templates and query information to inform the client of available interactions.
@@ -13,7 +13,7 @@ export class Collection extends Entity {
 
     /**
      * URL to the collection.
-     * 
+     *
      * Please note that, if you want to display a `self`-link to a single element of a collection, you'll need to use the `links` property instead. This href is supposed to display the URL of the collection containing the element. See the [Github Issue](https://github.com/collection-json/spec/issues/9) for more information on this.
      */
     href?: string;
@@ -48,7 +48,7 @@ export class Collection extends Entity {
      * @param provider The provider containing the methods to fill in the Collection's properties
      * @param options Object containing all data the Provider needs to fill in the Collection's properties
      */
-    constructor(provider: Provider, options?: Object) {
+    constructor(provider: Provider, options?: object) {
         super();
 
         this.version = provider.getVersion(options);
@@ -62,7 +62,7 @@ export class Collection extends Entity {
 
     /**
      * Defines, how a Collection will be serialized into JSON.
-     * 
+     *
      * The Collection+JSON spec expects the response to contain one single named object called `collection` on the top level. This satisfies that requirement.
      */
     toJSON(): any {
@@ -76,6 +76,6 @@ export class Collection extends Entity {
                 template: this.template,
                 error: this.error
             }
-        }
+        };
     }
 }

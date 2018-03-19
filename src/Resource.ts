@@ -6,7 +6,7 @@ import { ResourceIdentifier } from "./ResourceIdentifier";
 // Resource Implementation ----------------------------------------------------
 /**
  * The Resource class is used to describe a Resource as it is defined in [Roy Fieldings Thesis](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_2_1_1).
- * 
+ *
  * Use a Resource to describe a certain thing or entity, for example ['Movies'](https://github.com/danepod/movie-database/blob/master/src/routes/movies.ts). You can assign a base url to a Resource and then add ResourceIdentifiers, which describe mappings to entities of a Resource (e.g. a list of movies or one movie in particular).
  */
 export class Resource {
@@ -33,7 +33,7 @@ export class Resource {
     constructor(name: string, url?: string) {
         url = url || `/${name}s`;
 
-        if(!url.startsWith("/")){
+        if (!url.startsWith("/")) {
             url = `/${url}`;
         }
 
@@ -58,28 +58,30 @@ export class Resource {
         const router = Router();
 
         for (const identifier of this.resourceIdentifiers) {
-            const url = identifier.url,
-                  handlers = identifier.getRoute();
+            const url = identifier.url;
+            const handlers = identifier.getRoute();
 
-            for (let method in handlers) {
-                let handler = handlers[method];
+            for (const method in handlers) {
+                if (handlers.hasOwnProperty(method)) {
+                    const handler = handlers[method];
 
-                switch (method.toUpperCase()) {
-                    case 'GET':
-                        router.get(`${this.url}${url}`, handler);
-                        break;
-                    case 'POST':
-                        router.post(`${this.url}${url}`, handler);
-                        break;
-                    case 'PUT':
-                        router.put(`${this.url}${url}`, handler);
-                        break;
-                    case 'PATCH':
-                        router.patch(`${this.url}${url}`, handler);
-                        break;
-                    case 'DELETE':
-                        router.delete(`${this.url}${url}`, handler);
-                        break;
+                    switch (method.toUpperCase()) {
+                        case "GET":
+                            router.get(`${this.url}${url}`, handler);
+                            break;
+                        case "POST":
+                            router.post(`${this.url}${url}`, handler);
+                            break;
+                        case "PUT":
+                            router.put(`${this.url}${url}`, handler);
+                            break;
+                        case "PATCH":
+                            router.patch(`${this.url}${url}`, handler);
+                            break;
+                        case "DELETE":
+                            router.delete(`${this.url}${url}`, handler);
+                            break;
+                    }
                 }
             }
         }

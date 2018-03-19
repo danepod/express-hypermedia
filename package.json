@@ -7,10 +7,11 @@
   "scripts": {
     "test": "mocha ./lib/**/*.test.js",
     "coverage": "nyc mocha ./lib/**/*.test.js",
-    "testfile": "nyc mocha",
+    "testfile": "mocha",
     "doc": "typedoc --out ./docs --exclude **/*.test.ts ./src",
     "prepare": "tsc -p ./ --outDir lib/",
-    "prepublishOnly": "typedoc --out ./docs --exclude **/*.test.ts ./src"
+    "prepublishOnly": "typedoc --out ./docs --exclude **/*.test.ts ./src",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "author": "Dane Podzkiewitz",
   "homepage": "https://github.com/danepod/express-hypermedia",
@@ -44,6 +45,7 @@
     "mocha": "^4.1.0",
     "nyc": "^11.4.1",
     "sinon": "^4.1.4",
+    "tslint": "^5.9.1",
     "typedoc": "^0.11.1"
   },
   "engines": {

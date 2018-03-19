@@ -1,2 +1,2 @@
-export { EmbeddedLink } from './embeddedLink';
-export { EmbeddedRepresentation } from './embeddedRepresentation';
+export { EmbeddedLink } from "./embeddedLink";
+export { EmbeddedRepresentation } from "./embeddedRepresentation";

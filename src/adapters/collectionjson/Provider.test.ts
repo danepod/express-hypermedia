@@ -1,10 +1,11 @@
+// tslint:disable:no-unused-expression
 import { expect } from "chai";
 import "mocha";
 
 // Don't import directly from ./Provider! This crashes the tests for some reason...
-import { Provider } from "./index"; 
+import { Provider } from "./index";
 
-class TestProvider1 extends Provider {};
+class TestProvider1 extends Provider {}
 
 class TestProvider2 extends Provider {
     getVersion(options?: {
@@ -15,7 +16,7 @@ class TestProvider2 extends Provider {
 }
 
 describe("Test Collection+JSON Provider", () => {
-    
+
     it("should instatiate a TestProvider, no options and automatically generating an entity", () => {
         const test = new TestProvider1();
 

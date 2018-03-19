@@ -1,13 +1,13 @@
 // Siren Adapter reexports ----------------------------------------------------
-import { Entity } from './entity';
-import { Link } from './link';
-import { Action } from './action';
-import { EmbeddedLink, EmbeddedRepresentation } from './subentity';
+import { Action } from "./action";
+import { Entity } from "./entity";
+import { Link } from "./link";
+import { EmbeddedLink, EmbeddedRepresentation } from "./subentity";
 
-import * as Interfaces from './interfaces';
-import { Provider } from './Provider';
-import { Provider as ErrorProvider } from './included/error/provider';
+import { Provider as ErrorProvider } from "./included/error/provider";
 import { Provider as StatusProvider } from "./included/status/provider";
+import * as Interfaces from "./interfaces";
+import { Provider } from "./Provider";
 
 /**
  * The MIME type of this adapter
@@ -26,7 +26,7 @@ const errorHandler = (status: number, message: string, error: string | undefined
         message,
         error
     });
-}
+};
 
 export {
     Entity,
@@ -40,4 +40,4 @@ export {
     ErrorProvider,
     StatusProvider,
     errorHandler
-}
+};
