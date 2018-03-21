@@ -54,7 +54,7 @@ This library contains two adapters to create responses, one for Siren and the ot
 ## See also
  * My [Wissenschaftliche Vertiefung](https://danepod.github.io/wissenschaftliche-vertiefung/) (German) covering REST, hypermedia formats and the application of HATEOAS for APIs in the Web. The last chapter explains the rationale behind this project.
 
- * The [Bachelorarbeit (bachelor's thesis)](https://github.com/danepod/bachelorarbeit) (German) documenting this project. It is the final paper of my studies in the course of "Bachelor of Science Medieninformatik" at Hochschule Düsseldorf.
+ * The [Bachelorarbeit (bachelor's thesis)](https://danepod.github.io/bachelorarbeit/) (German) documenting this project. It is the final paper of my studies in the course of "Bachelor of Science Medieninformatik" at Hochschule Düsseldorf.
 
  * The [Siren specification](https://github.com/kevinswiber/siren), as parts of this were used to create the JSDoc comments for the Siren adapter. Also, to use the adapter, it is necessary to know the basics of Siren which can be obtained there.
 
