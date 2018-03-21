@@ -7,12 +7,12 @@
 This library provides the necessary abstractions to easily create hypermedia APIs using [express](https://expressjs.com/). It supports [Siren](https://github.com/kevinswiber/siren) and [Collection+JSON](http://amundsen.com/media-types/collection/format/). Also, additional formats can be used when implemented using the supplied interfaces.
 
 ## Example project
-An example of `express-hypermedia` in use can be found at https://github.com/danepod/movie-database. This sample project features a small API for movies, demonstrating how to define Resources, ResourceIdentifiers, and making use of content negotiation. It shows how to generate [Siren](https://github.com/kevinswiber/siren) and [Collection+JSON](http://amundsen.com/media-types/collection/format/) responses easily and how to leverage the built-in error handling. It also demonstrates the usage of an [external adapter](https://github.com/danepod/hal-adapter) to leverage the [HAL](http://stateless.co/hal_specification.html) format.
+An example of `express-hypermedia` in use can be found at https://github.com/danepod/movie-database. This sample project features a small API for movies, demonstrating how to define Resources, ResourceIdentifiers, and making use of content negotiation. It shows how to generate Siren and Collection+JSON responses easily and how to leverage the built-in error handling. It also demonstrates the usage of an [external adapter](https://github.com/danepod/hal-adapter) to leverage the [HAL](http://stateless.co/hal_specification.html) format. Besides demonstrating the usage of these features, it shows a simple structure to organize the source code for a project using `express-hypermedia`.
 
 ## Installation
 Because `express-hypermedia` is part of my bachelor's thesis I cannot open-source and publish it until I finished the work on my thesis. As a result of this, it is not available through npm yet. For now, the installation process is as follows:
 
-*Requirements: NodeJS 8.9.4*
+*Requirements: NodeJS >= 8.9.4*
 
 1. Download this repository (*the following commands assume you use a terminal with the repository's folder active*)
 2. Install dependencies: `npm install`, this also automatically compiles the project via TypeScript
@@ -49,10 +49,10 @@ To see any warnings emitted by TSLint, either
 * use a code editor like [Visual Studio Code](https://code.visualstudio.com/) which shows linting warnings for each opened file automatically
 
 ### Implementing a custom adapter for additional formats
-This library contains two adapters to create responses, one for [Siren](https://github.com/kevinswiber/siren) and the other for [Collection+JSON](http://amundsen.com/media-types/collection/format/). However, support for additional formats can be added through external adapters. By extending upon the `Entity`, `Provider` and `Action` classes, it is possible to implement other hypermedia formats. One example of this is the [HAL adapter](https://github.com/danepod/hal-adapter).
+This library contains two adapters to create responses, one for Siren and the other for Collection+JSON. However, support for additional formats can be added through external adapters. By extending upon the `Entity`, `Provider` and `Action` classes, it is possible to implement other hypermedia formats. One example of this is the HAL adapter mentioned above.
 
 ## See also
- * My [Wissenschaftliche Vertiefung](https://github.com/danepod/wissenschaftliche-vertiefung) (German) covering REST, hypermedia formats and the application of HATEOAS for APIs in the Web. The last chapter explains the rationale behind this project.
+ * My [Wissenschaftliche Vertiefung](https://danepod.github.io/wissenschaftliche-vertiefung/) (German) covering REST, hypermedia formats and the application of HATEOAS for APIs in the Web. The last chapter explains the rationale behind this project.
 
  * The [Bachelorarbeit (bachelor's thesis)](https://github.com/danepod/bachelorarbeit) (German) documenting this project. It is the final paper of my studies in the course of "Bachelor of Science Medieninformatik" at Hochschule Düsseldorf.
 
