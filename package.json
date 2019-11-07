@@ -43,11 +43,11 @@
     "@types/mocha": "^5.2.6",
     "@types/sinon": "^7.0.9",
     "chai": "^4.2.0",
-    "mocha": "^6.0.2",
+    "mocha": "^6.2.2",
     "nyc": "^13.3.0",
     "sinon": "^7.2.7",
     "tslint": "^5.13.1",
-    "typedoc": "^0.14.2"
+    "typedoc": "^0.15.0"
   },
   "engines": {
     "node": ">=8.9.4"
